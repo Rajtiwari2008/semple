@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poonam Studio - Photography Packages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00796B; /* Teal */
+            --secondary-color: #f5f5f5; /* Lighter grey */
+            --accent-color: #FFB300; /* Amber */
+            --dark-color: #212121;
+            --light-color: #757575;
+            --white: #ffffff;
+            --card-bg: #e0e0e0;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--light-color);
+            font-size: 1.1rem;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .package-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .package-card.active {
+            box-shadow: 0 0 10px var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .package-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .package-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-content h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .package-content ul {
+            list-style: none;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .package-content ul li {
+            color: var(--light-color);
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .package-content ul li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .price-container {
+            margin-top: auto;
+            text-align: center;
+        }
+        
+        .base-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .select-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .select-btn:hover {
+            background-color: #004d40;
+        }
+
+        /* Customization Panel Styles */
+        .customization-panel {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .customization-panel.active {
+            display: flex;
+        }
+
+        .customization-panel h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .customization-panel .base-price-display {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .customization-panel .select-btn {
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            font-size: 1.1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .feature-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feature-item label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .feature-item input[type="checkbox"] {
+            transform: scale(1.2);
+            accent-color: var(--primary-color);
+        }
+        
+        .feature-item .price-label {
+            color: var(--light-color);
+            font-weight: 400;
+        }
+
+        .total-price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .total-price-container span {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        #total-price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Order Form Section */
+        #order-form-panel {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        #order-form-panel.active {
+            display: flex;
+        }
+
+        .order-summary {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--card-bg);
+        }
+
+        .order-summary h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .order-summary p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .order-summary ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .order-summary ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .order-summary .total-price-summary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .order-form input {
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid var(--card-bg);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .order-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(0, 121, 107, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>Poonam Studio</h1>
+            <p>Capturing your moments, beautifully.</p>
+        </header>
+
+        <main class="package-grid">
+            <div class="package-card" data-package-id="1">
+                <img src="https://i.imgur.com/8x09ja3.jpg" alt="Wedding Photography Package 1">
+                <div class="package-content">
+                    <h2>Package 1</h2>
+                    <ul>
+                        <li>2 Days function cover</li>
+                        <li>1 candid photographer</li>
+                        <li>1 traditional videographer</li>
+                        <li>20 Sheets Karizma album</li>
+                    </ul>
+                    <div class="price-container">
+                        <div class="base-price">₹20,000</div>
+                        <button class="select-btn">Select Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card" data-package-id="2">
+                <img src="https://i.imgur.com/cwJJ08L.jpg" alt="Wedding Photography Package 2">
+                <div class="package-content">
+                    <h2>Package 2</h2>
+                    <ul>
+                        <li>3 Days function cover</li>
+                        <li>1 candid photographer</li>
+                        <li>1 traditional videographer</li>
+                        <li>Drone 1 Day</li>
+                        <li>25 Sheets Karizma album</li>
+                    </ul>
+                    <div class="price-container">
+                        <div class="base-price">₹29,000</div>
+                        <button class="select-btn">Select Package</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card" data-package-id="3">
+                <img src="https://i.imgur.com/WnpJ2OP.jpg" alt="Wedding Photography Package 3">
+                <div class="package-content">
+                    <h2>Package 3</h2>
+                    <ul>
+                        <li>3 Days function cover</li>
+                        <li>1 candid photographer</li>
+                        <li>1 cinematographer</li>
+                        <li>Drone 1 Day</li>
+                        <li>30 Sheets Karizma album</li>
+                        <li>1 min wedding teaser</li>
+                        <li>Wedding invitation video</li>
+                        <li>10 reels</li>
+                    </ul>
+                    <div class="price-container">
+                        <div class="base-price">₹45,000</div>
+                        <button class="select-btn">Select Package</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section id="customization-panel" class="customization-panel">
+            <div class="package-info">
+                <h3>Package <span id="selected-package-title"></span></h3>
+                <div class="base-price-display">Base Price: <span id="base-price-display">₹0</span></div>
+            </div>
+            
+            <div class="included-features">
+                <h3>Included Features (uncheck to remove)</h3>
+                <div class="feature-list" id="included-features-list">
+                    </div>
+            </div>
+
+            <div class="optional-features">
+                <h3>Optional Add-on Features</h3>
+                <div class="feature-list" id="optional-features-list">
+                    </div>
+            </div>
+
+            <div class="total-price-container">
+                <span>Total Price:</span>
+                <span id="total-price">₹0</span>
+            </div>
+            
+            <button class="select-btn" id="show-order-form-btn">Proceed to Order</button>
+        </section>
+
+        <section id="order-form-panel">
+            <h3>Confirm Your Order</h3>
+            
+            <div class="order-summary">
+                <h4>Order Summary</h4>
+                <p id="order-summary-prompt"></p>
+            </div>
+            
+            <form class="order-form" id="order-form">
+                <input type="text" id="customer-name" placeholder="Your Name" required>
+                <input type="email" id="customer-email" placeholder="Your Email" required>
+                <input type="tel" id="customer-phone" placeholder="Phone Number" required>
+                <input type="date" id="event-date" required>
+                <input type="text" id="event-location" placeholder="Event Location" required>
+                <button type="submit" class="select-btn">Confirm Order</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        const packagesData = {
+            '1': {
+                title: 'Package 1',
+                basePrice: 20000,
+                image: 'https://i.imgur.com/8x09ja3.jpg',
+                features: [
+                    { name: '2 Days function cover', price: 6000 },
+                    { name: '1 candid photographer', price: 5000 },
+                    { name: '1 traditional videographer', price: 5000 },
+                    { name: '20 Sheets Karizma album', price: 4000 }
+                ]
+            },
+            '2': {
+                title: 'Package 2',
+                basePrice: 29000,
+                image: 'https://i.imgur.com/cwJJ08L.jpg',
+                features: [
+                    { name: '3 Days function cover', price: 9000 },
+                    { name: '1 candid photographer', price: 6000 },
+                    { name: '1 traditional videographer', price: 5000 },
+                    { name: 'Drone 1 Day', price: 5000 },
+                    { name: '25 Sheets Karizma album', price: 4000 }
+                ]
+            },
+            '3': {
+                title: 'Package 3',
+                basePrice: 45000,
+                image: 'https://i.imgur.com/WnpJ2OP.jpg',
+                features: [
+                    { name: '3 Days function cover', price: 9000 },
+                    { name: '1 candid photographer', price: 6000 },
+                    { name: '1 cinematographer', price: 10000 },
+                    { name: 'Drone 1 Day', price: 5000 },
+                    { name: '30 Sheets Karizma album', price: 5000 },
+                    { name: '1 min wedding teaser', price: 5000 },
+                    { name: 'Wedding invitation video', price: 3000 },
+                    { name: '10 reels', price: 2000 }
+                ]
+            }
+        };
+
+        const optionalAddons = [
+            { name: 'Traditional Wedding 1 Day', price: 10000 },
+            { name: 'Cinematic Wedding 1 Day', price: 15000 },
+            { name: 'Drone 1 Day', price: 5000 },
+            { name: 'LED TV (2 pcs, 55", 1 night)', price: 7000 },
+            { name: 'LED Wall (8x12, 1 night)', price: 16000 },
+            { name: 'Normal Album 20 Sheets', price: 6000 },
+            { name: 'High Quality Album 20 Sheets', price: 12000 }
+        ];
+
+        const selectButtons = document.querySelectorAll('.select-btn');
+        const customizationPanel = document.getElementById('customization-panel');
+        const includedFeaturesList = document.getElementById('included-features-list');
+        const optionalFeaturesList = document.getElementById('optional-features-list');
+        const selectedPackageTitle = document.getElementById('selected-package-title');
+        const basePriceDisplay = document.getElementById('base-price-display');
+        const totalPriceDisplay = document.getElementById('total-price');
+        const showOrderFormBtn = document.getElementById('show-order-form-btn');
+        const orderFormPanel = document.getElementById('order-form-panel');
+        const orderSummaryPrompt = document.getElementById('order-summary-prompt');
+        const packageCards = document.querySelectorAll('.package-card');
+        const orderForm = document.getElementById('order-form');
+
+        let currentPackage = null;
+        let includedSelected = [];
+        let addonsSelected = [];
+        let totalCustomPrice = 0;
+
+        function updateTotalPrice() {
+            if (!currentPackage) return;
+            
+            let newTotalPrice = currentPackage.basePrice;
+            includedSelected = [];
+            addonsSelected = [];
+            
+            // Deduct un-checked included features
+            const includedCheckboxes = includedFeaturesList.querySelectorAll('input[type="checkbox"]');
+            includedCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    includedSelected.push(checkbox.dataset.name);
+                } else {
+                    newTotalPrice -= parseInt(checkbox.dataset.price);
+                }
+            });
+
+            // Add selected optional features
+            const optionalCheckboxes = optionalFeaturesList.querySelectorAll('input[type="checkbox"]');
+            optionalCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    newTotalPrice += parseInt(checkbox.dataset.price);
+                    addonsSelected.push(checkbox.dataset.name);
+                }
+            });
+            
+            totalCustomPrice = newTotalPrice;
+            totalPriceDisplay.textContent = `₹${totalCustomPrice.toLocaleString('en-IN')}`;
+        }
+
+        function renderFeatures(features, container, isIncluded) {
+            container.innerHTML = '';
+            features.forEach((feature, index) => {
+                const featureItem = document.createElement('div');
+                featureItem.className = 'feature-item';
+                
+                const label = document.createElement('label');
+                label.htmlFor = `feature-${isIncluded ? 'included' : 'optional'}-${index}`;
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `feature-${isIncluded ? 'included' : 'optional'}-${index}`;
+                checkbox.checked = isIncluded;
+                checkbox.dataset.price = feature.price;
+                checkbox.dataset.name = feature.name;
+                checkbox.addEventListener('change', updateTotalPrice);
+                
+                const spanName = document.createElement('span');
+                spanName.textContent = feature.name;
+
+                const spanPrice = document.createElement('span');
+                spanPrice.className = 'price-label';
+                spanPrice.textContent = `₹${feature.price.toLocaleString('en-IN')}`;
+                
+                label.appendChild(checkbox);
+                label.appendChild(spanName);
+                featureItem.appendChild(label);
+                featureItem.appendChild(spanPrice);
+                container.appendChild(featureItem);
+            });
+        }
+
+        selectButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const packageCard = event.target.closest('.package-card');
+                const packageId = packageCard.dataset.packageId;
+                const packageData = packagesData[packageId];
+                
+                // Hide the order form and show customization panel
+                orderFormPanel.classList.remove('active');
+                customizationPanel.classList.add('active');
+                
+                // Remove active class from all cards
+                packageCards.forEach(card => card.classList.remove('active'));
+                
+                // Add active class to the selected card
+                packageCard.classList.add('active');
+
+                currentPackage = packageData;
+
+                // Update customization panel with package details
+                selectedPackageTitle.textContent = packageData.title;
+                basePriceDisplay.textContent = `₹${packageData.basePrice.toLocaleString('en-IN')}`;
+
+                // Render included and optional features
+                renderFeatures(packageData.features, includedFeaturesList, true);
+                renderFeatures(optionalAddons, optionalFeaturesList, false);
+
+                // Scroll to the customization panel
+                customizationPanel.scrollIntoView({ behavior: 'smooth' });
+                
+                // Calculate and display initial total price
+                updateTotalPrice();
+            });
+        });
+
+        showOrderFormBtn.addEventListener('click', () => {
+            if (!currentPackage) return;
+            
+            // Hide customization panel
+            customizationPanel.classList.remove('active');
+            
+            // Generate the prompt-style summary
+            let includedList = includedSelected.length > 0 ? `Included: ${includedSelected.join(', ')}` : 'Included: None';
+            let addonsList = addonsSelected.length > 0 ? `Add-ons: ${addonsSelected.join(', ')}` : 'Add-ons: None';
+
+            const summaryText = `You have selected *${currentPackage.title}* with the following:
+            - ${includedList}
+            - ${addonsList}
+            - Total Cost: ₹${totalCustomPrice.toLocaleString('en-IN')}`;
+
+            orderSummaryPrompt.innerHTML = summaryText.replace(/\*/g, '<span>').replace(/\n/g, '<br>');
+
+            // Show the order form panel
+            orderFormPanel.classList.add('active');
+
+            // Scroll to the order form
+            orderFormPanel.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        orderForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // In a real-world scenario, you would send this data to a backend server.
+            // For this example, we'll just log the form data and selected details.
+            
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerPhone = document.getElementById('customer-phone').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventLocation = document.getElementById('event-location').value;
+
+            const orderDetails = {
+                package: currentPackage.title,
+                basePrice: currentPackage.basePrice,
+                includedFeatures: includedSelected,
+                optionalAddons: addonsSelected,
+                finalPrice: totalCustomPrice,
+                customerInfo: {
+                    name: customerName,
+                    email: customerEmail,
+                    phone: customerPhone,
+                    eventDate: eventDate,
+                    eventLocation: eventLocation
+                }
+            };
+
+            console.log("Order Submitted:", orderDetails);
+            alert(`Thank you, ${customerName}! Your order for ${currentPackage.title} has been confirmed. We will contact you at ${customerEmail}.`);
+
+            // Optionally, clear the form and hide panels after submission
+            orderForm.reset();
+            orderFormPanel.classList.remove('active');
+            packageCards.forEach(card => card.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>
+```
