@@ -1,655 +1,1422 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poonam Studio - Photography Packages</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #00796B; /* Teal */
-            --secondary-color: #f5f5f5; /* Lighter grey */
-            --accent-color: #FFB300; /* Amber */
-            --dark-color: #212121;
-            --light-color: #757575;
-            --white: #ffffff;
-            --card-bg: #e0e0e0;
-            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease-in-out;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anthony - UI/UX Designer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    :root {
+      --primary: #F28C28;
+      --dark-bg: #1A1A1A;
+      --light-bg: #FFFFFF;
+      --dark-text: #000000;
+      --light-text: #FFFFFF;
+      --gray-text: #666666;
+      --transition: all 0.3s ease;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-            padding: 2rem;
-            min-height: 100vh;
-        }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      background: var(--light-bg);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
 
-        .header {
-            text-align: center;
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
+    section {
+      padding: 100px 0;
+    }
 
-        .header p {
-            color: var(--light-color);
-            font-size: 1.1rem;
-        }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--light-bg);
+      padding: 20px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
 
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .package-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .package-card:hover {
-            transform: translateY(-5px);
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: var(--dark-text);
+    }
 
-        .package-card.active {
-            box-shadow: 0 0 10px var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
+    .logo-icon {
+      color: var(--primary);
+      margin-right: 8px;
+      font-size: 1.8rem;
+    }
 
-        .package-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
 
-        .package-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+    .nav-menu li {
+      margin: 0 15px;
+    }
 
-        .package-content h2 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .package-content ul {
-            list-style: none;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
+    .nav-menu a {
+      color: var(--dark-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
 
-        .package-content ul li {
-            color: var(--light-color);
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
 
-        .package-content ul li::before {
-            content: '✓';
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
 
-        .price-container {
-            margin-top: auto;
-            text-align: center;
-        }
-        
-        .base-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
 
-        .select-btn {
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
+    .mobile-menu-btn {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark-text);
+    }
 
-        .select-btn:hover {
-            background-color: #004d40;
-        }
+    /* Hero Section */
+    .hero {
+      padding: 160px 0 100px;
+      background-color: var(--light-bg);
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Customization Panel Styles */
-        .customization-panel {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            gap: 1.5rem;
-            transition: all 0.5s ease-in-out;
-        }
-        
-        .customization-panel.active {
-            display: flex;
-        }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .customization-panel h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--card-bg);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
+    .hero-text {
+      width: 50%;
+    }
 
-        .customization-panel .base-price-display {
-            background-color: var(--dark-color);
-            color: var(--white);
-            padding: 1rem;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
+    .hero-heading {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+    }
 
-        .customization-panel .select-btn {
-            background-color: var(--primary-color);
-            border-radius: 5px;
-            font-size: 1.1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
+   .outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--primary);
+  position: absolute;
+  left: clamp(60px, 35vw, 250px);
+  top: 0;
+  pointer-events: none;
+  user-select: none;
+  font-size: 4rem;
+  white-space: nowrap; /* prevent wrapping */
+  transition: left 0.3s ease;
+}
 
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
+.hero-heading {
+  position: relative;
+  white-space: nowrap; /* keep "I'M A" inline */
+}
 
-        .feature-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.hero-heading:hover .outline-text {
+  color: var(--primary);
+  -webkit-text-stroke: 0;
+}
 
-        .feature-item label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            flex-grow: 1;
-        }
+    .hero-text p {
+      font-size: 1.125rem;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
 
-        .feature-item input[type="checkbox"] {
-            transform: scale(1.2);
-            accent-color: var(--primary-color);
-        }
-        
-        .feature-item .price-label {
-            color: var(--light-color);
-            font-weight: 400;
-        }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--light-text);
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      opacity: 0;
+      animation: fadeInUp 1s 1s forwards;
+      transition: background-color 0.3s ease;
+    }
 
-        .total-price-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--secondary-color);
-            padding: 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-        }
+    .btn-primary:hover {
+      background-color: #d97d1f;
+    }
 
-        .total-price-container span {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        
-        #total-price {
-            font-size: 2rem;
-            color: var(--primary-color);
-            font-weight: 700;
-        }
+    .hero-image {
+      width: 45%;
+      position: relative;
+      opacity: 0;
+      animation: fadeInRight 1s 1.2s forwards;
+    }
 
-        /* Order Form Section */
-        #order-form-panel {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            display: none;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        #order-form-panel.active {
-            display: flex;
-        }
+    .x-shape {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary) 0%, transparent 70%);
+      opacity: 0.2;
+      z-index: -1;
+      border-radius: 30% / 50%;
+      transform: rotate(45deg);
+      filter: blur(12px);
+    }
 
-        .order-summary {
-            background-color: var(--secondary-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--card-bg);
-        }
+    .hero-portrait {
+      width: 100%;
+      border-radius: 10px;
+      filter: grayscale(100%);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transition: filter 0.5s ease;
+    }
 
-        .order-summary h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .order-summary p {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
+    .hero-portrait:hover {
+      filter: grayscale(0%);
+    }
 
-        .order-summary ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      text-decoration: none;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-        .order-summary ul li {
-            margin-bottom: 0.3rem;
-        }
+    .scroll-down:hover {
+      background-color: var(--primary);
+      color: var(--light-text);
+    }
 
-        .order-summary .total-price-summary {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 1rem;
-        }
+    @keyframes bounce {
 
-        .order-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
 
-        .order-form input {
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: 1px solid var(--card-bg);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-        }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
 
-        .order-form input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 5px rgba(0, 121, 107, 0.3);
-        }
-    </style>
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* About Section */
+    .about {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .about-text {
+      width: 50%;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .about-stats {
+      display: flex;
+      margin-top: 30px;
+    }
+
+    .stat-item {
+      margin-right: 30px;
+      text-align: center;
+      opacity: 0;
+      position: relative;
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    .stat-item:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .stat-item:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .stat-item:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+    }
+
+    .about-image {
+      width: 45%;
+      position: relative;
+    }
+
+    .about-portrait {
+      width: 100%;
+      border-radius: 10px;
+      filter: grayscale(100%);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: filter 0.5s ease;
+    }
+
+    .about-portrait:hover {
+      filter: grayscale(0%);
+    }
+
+    .orange-doodle {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background-color: var(--primary);
+      opacity: 0.2;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(242, 140, 40, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242, 140, 40, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: -1;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      background-color: var(--light-bg);
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .portfolio-filter {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filter-btn {
+      padding: 10px 25px;
+      border: 2px solid var(--primary);
+      background-color: var(--light-bg);
+      color: var(--primary);
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      filter: grayscale(60%);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover,
+    .filter-btn:focus {
+      background-color: var(--primary);
+      color: var(--light-text);
+      filter: grayscale(0%);
+      outline: none;
+      box-shadow: 0 0 8px var(--primary);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      position: relative;
+      min-height: 250px;
+      /* prevents layout shift when items hide */
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .portfolio-item.hide {
+      opacity: 0;
+      transform: scale(0.9);
+      pointer-events: none;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .portfolio-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      display: block;
+    }
+
+    .portfolio-item:hover .portfolio-img,
+    .portfolio-item:focus-within .portfolio-img {
+      transform: scale(1.1);
+      filter: brightness(0.85);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(242, 140, 40, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      pointer-events: none;
+    }
+
+    .portfolio-item:hover .portfolio-overlay,
+    .portfolio-item:focus-within .portfolio-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .portfolio-title {
+      color: var(--light-text);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .portfolio-category {
+      color: var(--light-text);
+      font-size: 1rem;
+    }
+
+    /* Experience Section */
+    .experience {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: var(--primary);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 20px 40px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      top: 30px;
+      right: -10px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -10px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .timeline-year {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .timeline-role {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--light-bg);
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .testimonials-slider {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-item {
+      text-align: center;
+      padding: 30px;
+      background-color: var(--light-bg);
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .testimonial-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 3px solid var(--primary);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--gray-text);
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .testimonial-role {
+      color: var(--gray-text);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-rating {
+      color: var(--primary);
+      margin-top: 10px;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      position: relative;
+    }
+
+    .contact-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .contact-form {
+      width: 50%;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 5px;
+      color: var(--light-text);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact-map {
+      width: 45%;
+      border-radius: 10px;
+      overflow: hidden;
+      min-height: 350px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-text);
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+      z-index: 100;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      padding: 50px 0 30px;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+      color: var(--light-text);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.25rem;
+    }
+
+    .social-icon:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Animation Classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .services {
+      background-color: var(--light-bg);
+      padding: 80px 0 60px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray-text);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      cursor: default;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      outline-offset: 4px;
+    }
+
+    .service-card:focus,
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(242, 140, 40, 0.3);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .service-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--dark-text);
+    }
+
+    .service-description {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--gray-text);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+
+      .hero-content,
+      .about-content,
+      .contact-content {
+        flex-direction: column;
+      }
+
+      .hero-text,
+      .hero-image,
+      .about-text,
+      .about-image,
+      .contact-form,
+      .contact-map {
+        width: 100%;
+      }
+
+      .hero-image,
+      .about-image,
+      .contact-map {
+        margin-top: 40px;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 0;
+      }
+
+      .timeline-item::after {
+        left: 20px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        flex-direction: column;
+        background-color: var(--light-bg);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-menu li {
+        margin: 15px 0;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-heading {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-stats {
+        flex-direction: column;
+      }
+
+      .stat-item {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-    <div class="container">
-        <header class="header">
-            <h1>Poonam Studio</h1>
-            <p>Capturing your moments, beautifully.</p>
-        </header>
-
-        <main class="package-grid">
-            <div class="package-card" data-package-id="1">
-                <img src="https://i.imgur.com/8x09ja3.jpg" alt="Wedding Photography Package 1">
-                <div class="package-content">
-                    <h2>Package 1</h2>
-                    <ul>
-                        <li>2 Days function cover</li>
-                        <li>1 candid photographer</li>
-                        <li>1 traditional videographer</li>
-                        <li>20 Sheets Karizma album</li>
-                    </ul>
-                    <div class="price-container">
-                        <div class="base-price">₹20,000</div>
-                        <button class="select-btn">Select Package</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="package-card" data-package-id="2">
-                <img src="https://i.imgur.com/cwJJ08L.jpg" alt="Wedding Photography Package 2">
-                <div class="package-content">
-                    <h2>Package 2</h2>
-                    <ul>
-                        <li>3 Days function cover</li>
-                        <li>1 candid photographer</li>
-                        <li>1 traditional videographer</li>
-                        <li>Drone 1 Day</li>
-                        <li>25 Sheets Karizma album</li>
-                    </ul>
-                    <div class="price-container">
-                        <div class="base-price">₹29,000</div>
-                        <button class="select-btn">Select Package</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="package-card" data-package-id="3">
-                <img src="https://i.imgur.com/WnpJ2OP.jpg" alt="Wedding Photography Package 3">
-                <div class="package-content">
-                    <h2>Package 3</h2>
-                    <ul>
-                        <li>3 Days function cover</li>
-                        <li>1 candid photographer</li>
-                        <li>1 cinematographer</li>
-                        <li>Drone 1 Day</li>
-                        <li>30 Sheets Karizma album</li>
-                        <li>1 min wedding teaser</li>
-                        <li>Wedding invitation video</li>
-                        <li>10 reels</li>
-                    </ul>
-                    <div class="price-container">
-                        <div class="base-price">₹45,000</div>
-                        <button class="select-btn">Select Package</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <section id="customization-panel" class="customization-panel">
-            <div class="package-info">
-                <h3>Package <span id="selected-package-title"></span></h3>
-                <div class="base-price-display">Base Price: <span id="base-price-display">₹0</span></div>
-            </div>
-            
-            <div class="included-features">
-                <h3>Included Features (uncheck to remove)</h3>
-                <div class="feature-list" id="included-features-list">
-                    </div>
-            </div>
-
-            <div class="optional-features">
-                <h3>Optional Add-on Features</h3>
-                <div class="feature-list" id="optional-features-list">
-                    </div>
-            </div>
-
-            <div class="total-price-container">
-                <span>Total Price:</span>
-                <span id="total-price">₹0</span>
-            </div>
-            
-            <button class="select-btn" id="show-order-form-btn">Proceed to Order</button>
-        </section>
-
-        <section id="order-form-panel">
-            <h3>Confirm Your Order</h3>
-            
-            <div class="order-summary">
-                <h4>Order Summary</h4>
-                <p id="order-summary-prompt"></p>
-            </div>
-            
-            <form class="order-form" id="order-form">
-                <input type="text" id="customer-name" placeholder="Your Name" required>
-                <input type="email" id="customer-email" placeholder="Your Email" required>
-                <input type="tel" id="customer-phone" placeholder="Phone Number" required>
-                <input type="date" id="event-date" required>
-                <input type="text" id="event-location" placeholder="Event Location" required>
-                <button type="submit" class="select-btn">Confirm Order</button>
-            </form>
-        </section>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <span class="logo-icon"><i class="fas fa-pen-nib"></i></span>
+        Qurifolio
+      </a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1 class="hero-heading fade-in">I'M A<span style="color: #F28C28; padding-left:10px;">DESIGNER</span></h1>
+        <p class="fade-in">Creating beautiful and functional digital experiences that users love.</p>
+        <a href="#portfolio" class="btn btn-primary fade-in">View My Work</a>
+      </div>
+      <div class="hero-image fade-in">
+        <div class="x-shape"></div>
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=500&q=80"
+          alt="Professional UI/UX designer portrait" class="hero-portrait" />
+      </div>
+    </div>
+    <a href="#about" class="scroll-down" aria-label="Scroll Down">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="grid-pattern"></div>
+    <div class="container about-content">
+      <div class="about-text">
+        <h2 class="section-title fade-in">HELLO, I'M ANTHONY</h2>
+        <p class="fade-in">I'm a passionate UI/UX designer with over 10 years of experience creating digital products
+          that not only look beautiful but also provide exceptional user experiences. My approach combines aesthetic
+          sensibility with user-centered design principles.</p>
+        <div class="about-stats">
+          <div class="stat-item fade-in">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item fade-in">
+            <div class="stat-number">64+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item fade-in">
+            <div class="stat-number">151+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-image fade-in">
+        <div class="orange-doodle"></div>
+        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=500&q=80"
+          alt="Designer working with a coffee cup" class="about-portrait" />
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="services" tabindex="-1" aria-label="Services offered">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center ;">Services</h2>
+      <p class="section-subtitle fade-in">Delivering creative solutions to bring your ideas to life</p>
+      <div class="services-grid fade-in">
+        <article class="service-card" tabindex="0" aria-labelledby="service1-title" aria-describedby="service1-desc">
+          <div class="service-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
+          <h3 id="service1-title" class="service-title">Brand Identity Design</h3>
+          <p id="service1-desc" class="service-description">Create memorable logos, color schemes, and style guides that
+            embody your brand.</p>
+        </article>
+        <article class="service-card" tabindex="0" aria-labelledby="service2-title" aria-describedby="service2-desc">
+          <div class="service-icon"><i class="fas fa-box-open" aria-hidden="true"></i></div>
+          <h3 id="service2-title" class="service-title">Packaging Design</h3>
+          <p id="service2-desc" class="service-description">Design innovative and eye-catching packaging that stands out
+            on the shelf.</p>
+        </article>
+        <article class="service-card" tabindex="0" aria-labelledby="service3-title" aria-describedby="service3-desc">
+          <div class="service-icon"><i class="fas fa-ad" aria-hidden="true"></i></div>
+          <h3 id="service3-title" class="service-title">Poster & Print Design</h3>
+          <p id="service3-desc" class="service-description">Craft compelling posters and print materials that
+            communicate your message clearly.</p>
+        </article>
+        <article class="service-card" tabindex="0" aria-labelledby="service4-title" aria-describedby="service4-desc">
+          <div class="service-icon"><i class="fas fa-font" aria-hidden="true"></i></div>
+          <h3 id="service4-title" class="service-title">Typography & Layout</h3>
+          <p id="service4-desc" class="service-description">Design stylish typography and layouts that enhance
+            readability and aesthetic appeal.</p>
+        </article>
+        <article class="service-card" tabindex="0" aria-labelledby="service5-title" aria-describedby="service5-desc">
+          <div class="service-icon"><i class="fas fa-image" aria-hidden="true"></i></div>
+          <h3 id="service5-title" class="service-title">Thumbnail & Digital Art</h3>
+          <p id="service5-desc" class="service-description">Create captivating thumbnails and digital artwork tailored
+            to your online presence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="portfolio-header fade-in">
+        <h2 class="section-title">My Work & Portfolio</h2>
+        <p>A selection of my recent design projects</p>
+      </div>
+      <div class="portfolio-filter" role="list" aria-label="Filter portfolio categories">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="visiting-card" aria-pressed="false">Visiting Card</button>
+        <button class="filter-btn" data-filter="packaging" aria-pressed="false">Packaging</button>
+        <button class="filter-btn" data-filter="poster" aria-pressed="false">Poster</button>
+        <button class="filter-btn" data-filter="logo" aria-pressed="false">Logo</button>
+        <button class="filter-btn" data-filter="thumbnail" aria-pressed="false">Thumbnail Design</button>
+      </div>
+      <div class="portfolio-grid" role="region" aria-live="polite" aria-label="Portfolio gallery">
+        <!-- Portfolio items with respective data-category -->
+        <div class="portfolio-item fade-in" data-category="visiting-card" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/1513494/screenshots/10767445/media/9de3739ff327a3d471a7ebb27e2ae383.png"
+            alt="Elegant Visiting Card" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Elegant Visiting Card</h3>
+            <p class="portfolio-category">Visiting Card</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="visiting-card" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/59404/screenshots/13528455/media/2d741ae0a58f4799d9286b3cd753ad4d.png"
+            alt="Modern Visiting Card" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Modern Visiting Card</h3>
+            <p class="portfolio-category">Visiting Card</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="packaging" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/1107322/screenshots/13845650/media/6760caf533d8898e3dcb20811c9bb329.png"
+            alt="Creative Packaging" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Creative Packaging</h3>
+            <p class="portfolio-category">Packaging</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="packaging" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/390532/screenshots/14598834/media/5f6e7e03e6d62a78d4d2a071c4a43b01.png"
+            alt="Box Packaging" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Box Packaging</h3>
+            <p class="portfolio-category">Packaging</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="poster" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/906484/screenshots/14904901/media/cb7108ac4e651cacc73e3a384a03df47.png"
+            alt="Event Poster" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Event Poster</h3>
+            <p class="portfolio-category">Poster</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="poster" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/391992/screenshots/14823242/media/4e23e712694ce0456f655a5e46b0f90f.png"
+            alt="Concert Poster" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Concert Poster</h3>
+            <p class="portfolio-category">Poster</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="logo" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/1162075/screenshots/14608907/media/50e4f9b8aaf44aa804debb14f59ed2e3.png"
+            alt="Startup Logo" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Startup Logo</h3>
+            <p class="portfolio-category">Logo</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="logo" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/737837/screenshots/14443551/media/50845601f0ea57523be8864e85d77e7e.png"
+            alt="Creative Logo" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Creative Logo</h3>
+            <p class="portfolio-category">Logo</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="thumbnail" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/521392/screenshots/15311446/media/2d4dadf83f0d17655b0d88ef3af5c6b2.png"
+            alt="Youtube Thumbnail" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Youtube Thumbnail</h3>
+            <p class="portfolio-category">Thumbnail Design</p>
+          </div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="thumbnail" tabindex="0">
+          <img
+            src="https://cdn.dribbble.com/users/16269/screenshots/14654533/media/ecc4e0f23316b474fec90828ddaebfd3.png"
+            alt="Blog Thumbnail" class="portfolio-img" />
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Blog Thumbnail</h3>
+            <p class="portfolio-category">Thumbnail Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <div class="portfolio-header fade-in">
+          <h2 class="section-title">Professional Experience</h2>
+          <p>My career journey and milestones</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item fade-in">
+            <div class="timeline-content">
+              <div class="timeline-year">2021 - Present</div>
+              <h3 class="timeline-role">Senior UI/UX Designer</h3>
+              <p>Tech Innovations Inc.</p>
+              <p>Leading design projects for enterprise clients and mentoring junior designers.</p>
+            </div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-content">
+              <div class="timeline-year">2018 - 2021</div>
+              <h3 class="timeline-role">Product Designer</h3>
+              <p>Creative Solutions LLC</p>
+              <p>Designed mobile apps and web interfaces for various startups and established companies.</p>
+            </div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-content">
+              <div class="timeline-year">2015 - 2018</div>
+              <h3 class="timeline-role">UI Designer</h3>
+              <p>Digital Agency Co.</p>
+              <p>Created visual designs and prototypes for client websites and applications.</p>
+            </div>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-content">
+              <div class="timeline-year">2013 - 2015</div>
+              <h3 class="timeline-role">Junior Designer</h3>
+              <p>Web Studio</p>
+              <p>Assisted in creating design mockups and implemented front-end designs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="clients" class="testimonials">
+      <div class="container">
+        <div class="testimonials-header fade-in">
+          <h2 class="section-title">What My Clients Say</h2>
+          <p>Feedback from clients I've worked with</p>
+        </div>
+        <div class="testimonials-slider">
+          <div class="testimonial-item fade-in visible">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson"
+              class="testimonial-avatar" />
+            <p class="testimonial-text">"Anthony's design expertise transformed our product's user experience. His
+              attention to detail and user-centered approach resulted in a 40% increase in user engagement."</p>
+            <h4 class="testimonial-author">Sarah Johnson</h4>
+            <p class="testimonial-role">Product Manager, TechCorp</p>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container contact-content">
+        <div class="contact-form">
+          <h2 class="section-title fade-in">Get In Touch</h2>
+          <form>
+            <div class="form-group fade-in">
+              <input type="text" class="form-control" placeholder="Your Name" required />
+            </div>
+            <div class="form-group fade-in">
+              <input type="email" class="form-control" placeholder="Your Email" required />
+            </div>
+            <div class="form-group fade-in">
+              <textarea class="form-control" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary fade-in">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-map fade-in" aria-label="Office Location Map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086391319127!2d-122.41941508468137!3d37.77492967975979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c1fe061e1%3A0x1a8f8653e987a223!2sSan+Francisco%2C+CA!5e0!3m2!1sen!2sus!4v1696378055582!5m2!1sen!2sus"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="whatsapp-float"
+        aria-label="WhatsApp Chat">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <div class="social-icons">
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" aria-label="Behance"><i class="fab fa-behance"></i></a>
+          <a href="#" class="social-icon" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="#" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="copyright">© 2025 Anthony Qurifolio. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script>
-        const packagesData = {
-            '1': {
-                title: 'Package 1',
-                basePrice: 20000,
-                image: 'https://i.imgur.com/8x09ja3.jpg',
-                features: [
-                    { name: '2 Days function cover', price: 6000 },
-                    { name: '1 candid photographer', price: 5000 },
-                    { name: '1 traditional videographer', price: 5000 },
-                    { name: '20 Sheets Karizma album', price: 4000 }
-                ]
-            },
-            '2': {
-                title: 'Package 2',
-                basePrice: 29000,
-                image: 'https://i.imgur.com/cwJJ08L.jpg',
-                features: [
-                    { name: '3 Days function cover', price: 9000 },
-                    { name: '1 candid photographer', price: 6000 },
-                    { name: '1 traditional videographer', price: 5000 },
-                    { name: 'Drone 1 Day', price: 5000 },
-                    { name: '25 Sheets Karizma album', price: 4000 }
-                ]
-            },
-            '3': {
-                title: 'Package 3',
-                basePrice: 45000,
-                image: 'https://i.imgur.com/WnpJ2OP.jpg',
-                features: [
-                    { name: '3 Days function cover', price: 9000 },
-                    { name: '1 candid photographer', price: 6000 },
-                    { name: '1 cinematographer', price: 10000 },
-                    { name: 'Drone 1 Day', price: 5000 },
-                    { name: '30 Sheets Karizma album', price: 5000 },
-                    { name: '1 min wedding teaser', price: 5000 },
-                    { name: 'Wedding invitation video', price: 3000 },
-                    { name: '10 reels', price: 2000 }
-                ]
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navMenu = document.querySelector('.nav-menu');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ?
+          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+
+      // Scroll animations for fade-in elements
+      const fadeElements = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      fadeElements.forEach(el => observer.observe(el));
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+          header.style.padding = '10px 0';
+          header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+          header.style.padding = '20px 0';
+          header.style.boxShadow = 'none';
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Portfolio filtering functionality
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update aria-pressed for accessibility and active class
+          filterButtons.forEach(b => {
+            b.setAttribute('aria-pressed', 'false');
+            b.classList.remove('active');
+          });
+          btn.setAttribute('aria-pressed', 'true');
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+
+          portfolioItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              item.classList.remove('hide');
+              // Trigger reflow for animation
+              void item.offsetWidth;
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+              item.style.position = 'relative';
+              item.style.zIndex = 'auto';
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.9)';
+              // Delay adding class to allow transition to complete
+              setTimeout(() => {
+                item.classList.add('hide');
+                item.style.position = 'absolute';
+                item.style.zIndex = '-1';
+              }, 400);
             }
-        };
-
-        const optionalAddons = [
-            { name: 'Traditional Wedding 1 Day', price: 10000 },
-            { name: 'Cinematic Wedding 1 Day', price: 15000 },
-            { name: 'Drone 1 Day', price: 5000 },
-            { name: 'LED TV (2 pcs, 55", 1 night)', price: 7000 },
-            { name: 'LED Wall (8x12, 1 night)', price: 16000 },
-            { name: 'Normal Album 20 Sheets', price: 6000 },
-            { name: 'High Quality Album 20 Sheets', price: 12000 }
-        ];
-
-        const selectButtons = document.querySelectorAll('.select-btn');
-        const customizationPanel = document.getElementById('customization-panel');
-        const includedFeaturesList = document.getElementById('included-features-list');
-        const optionalFeaturesList = document.getElementById('optional-features-list');
-        const selectedPackageTitle = document.getElementById('selected-package-title');
-        const basePriceDisplay = document.getElementById('base-price-display');
-        const totalPriceDisplay = document.getElementById('total-price');
-        const showOrderFormBtn = document.getElementById('show-order-form-btn');
-        const orderFormPanel = document.getElementById('order-form-panel');
-        const orderSummaryPrompt = document.getElementById('order-summary-prompt');
-        const packageCards = document.querySelectorAll('.package-card');
-        const orderForm = document.getElementById('order-form');
-
-        let currentPackage = null;
-        let includedSelected = [];
-        let addonsSelected = [];
-        let totalCustomPrice = 0;
-
-        function updateTotalPrice() {
-            if (!currentPackage) return;
-            
-            let newTotalPrice = currentPackage.basePrice;
-            includedSelected = [];
-            addonsSelected = [];
-            
-            // Deduct un-checked included features
-            const includedCheckboxes = includedFeaturesList.querySelectorAll('input[type="checkbox"]');
-            includedCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    includedSelected.push(checkbox.dataset.name);
-                } else {
-                    newTotalPrice -= parseInt(checkbox.dataset.price);
-                }
-            });
-
-            // Add selected optional features
-            const optionalCheckboxes = optionalFeaturesList.querySelectorAll('input[type="checkbox"]');
-            optionalCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    newTotalPrice += parseInt(checkbox.dataset.price);
-                    addonsSelected.push(checkbox.dataset.name);
-                }
-            });
-            
-            totalCustomPrice = newTotalPrice;
-            totalPriceDisplay.textContent = `₹${totalCustomPrice.toLocaleString('en-IN')}`;
-        }
-
-        function renderFeatures(features, container, isIncluded) {
-            container.innerHTML = '';
-            features.forEach((feature, index) => {
-                const featureItem = document.createElement('div');
-                featureItem.className = 'feature-item';
-                
-                const label = document.createElement('label');
-                label.htmlFor = `feature-${isIncluded ? 'included' : 'optional'}-${index}`;
-                
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `feature-${isIncluded ? 'included' : 'optional'}-${index}`;
-                checkbox.checked = isIncluded;
-                checkbox.dataset.price = feature.price;
-                checkbox.dataset.name = feature.name;
-                checkbox.addEventListener('change', updateTotalPrice);
-                
-                const spanName = document.createElement('span');
-                spanName.textContent = feature.name;
-
-                const spanPrice = document.createElement('span');
-                spanPrice.className = 'price-label';
-                spanPrice.textContent = `₹${feature.price.toLocaleString('en-IN')}`;
-                
-                label.appendChild(checkbox);
-                label.appendChild(spanName);
-                featureItem.appendChild(label);
-                featureItem.appendChild(spanPrice);
-                container.appendChild(featureItem);
-            });
-        }
-
-        selectButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const packageCard = event.target.closest('.package-card');
-                const packageId = packageCard.dataset.packageId;
-                const packageData = packagesData[packageId];
-                
-                // Hide the order form and show customization panel
-                orderFormPanel.classList.remove('active');
-                customizationPanel.classList.add('active');
-                
-                // Remove active class from all cards
-                packageCards.forEach(card => card.classList.remove('active'));
-                
-                // Add active class to the selected card
-                packageCard.classList.add('active');
-
-                currentPackage = packageData;
-
-                // Update customization panel with package details
-                selectedPackageTitle.textContent = packageData.title;
-                basePriceDisplay.textContent = `₹${packageData.basePrice.toLocaleString('en-IN')}`;
-
-                // Render included and optional features
-                renderFeatures(packageData.features, includedFeaturesList, true);
-                renderFeatures(optionalAddons, optionalFeaturesList, false);
-
-                // Scroll to the customization panel
-                customizationPanel.scrollIntoView({ behavior: 'smooth' });
-                
-                // Calculate and display initial total price
-                updateTotalPrice();
-            });
+          });
         });
-
-        showOrderFormBtn.addEventListener('click', () => {
-            if (!currentPackage) return;
-            
-            // Hide customization panel
-            customizationPanel.classList.remove('active');
-            
-            // Generate the prompt-style summary
-            let includedList = includedSelected.length > 0 ? `Included: ${includedSelected.join(', ')}` : 'Included: None';
-            let addonsList = addonsSelected.length > 0 ? `Add-ons: ${addonsSelected.join(', ')}` : 'Add-ons: None';
-
-            const summaryText = `You have selected *${currentPackage.title}* with the following:
-            - ${includedList}
-            - ${addonsList}
-            - Total Cost: ₹${totalCustomPrice.toLocaleString('en-IN')}`;
-
-            orderSummaryPrompt.innerHTML = summaryText.replace(/\*/g, '<span>').replace(/\n/g, '<br>');
-
-            // Show the order form panel
-            orderFormPanel.classList.add('active');
-
-            // Scroll to the order form
-            orderFormPanel.scrollIntoView({ behavior: 'smooth' });
+      });
+      // Intersection observer for timeline and testimonials fade-in
+      const observerVisibility = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
         });
+      }, { threshold: 0.2 });
 
-        orderForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            // In a real-world scenario, you would send this data to a backend server.
-            // For this example, we'll just log the form data and selected details.
-            
-            const customerName = document.getElementById('customer-name').value;
-            const customerEmail = document.getElementById('customer-email').value;
-            const customerPhone = document.getElementById('customer-phone').value;
-            const eventDate = document.getElementById('event-date').value;
-            const eventLocation = document.getElementById('event-location').value;
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      timelineItems.forEach(item => observerVisibility.observe(item));
 
-            const orderDetails = {
-                package: currentPackage.title,
-                basePrice: currentPackage.basePrice,
-                includedFeatures: includedSelected,
-                optionalAddons: addonsSelected,
-                finalPrice: totalCustomPrice,
-                customerInfo: {
-                    name: customerName,
-                    email: customerEmail,
-                    phone: customerPhone,
-                    eventDate: eventDate,
-                    eventLocation: eventLocation
-                }
-            };
-
-            console.log("Order Submitted:", orderDetails);
-            alert(`Thank you, ${customerName}! Your order for ${currentPackage.title} has been confirmed. We will contact you at ${customerEmail}.`);
-
-            // Optionally, clear the form and hide panels after submission
-            orderForm.reset();
-            orderFormPanel.classList.remove('active');
-            packageCards.forEach(card => card.classList.remove('active'));
-        });
+      const testimonialItems = document.querySelectorAll('.testimonial-item');
+      testimonialItems.forEach(item => observerVisibility.observe(item));
     </script>
 </body>
+
 </html>
-```
