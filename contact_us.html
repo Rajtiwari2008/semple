@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact | AURELIUS 3D STUDIO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 10px 40px rgba(26, 26, 26, 0.04);
+        }
+        input:focus ~ label, input:not(:placeholder-shown) ~ label {
+            transform: translateY(-24px) scale(0.85);
+            color: #004D40;
+        }
+        .custom-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #004D40;
+            transition: width 0.3s ease;
+        }
+        .custom-underline:hover::after {
+            width: 100%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#e2dfde",
+                      "surface-container-high": "#e9e8e7",
+                      "inverse-primary": "#94d3c1",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "tertiary": "#2d2e2d",
+                      "inverse-surface": "#303031",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f5f3f3",
+                      "surface-container": "#efeded",
+                      "error-container": "#ffdad6",
+                      "surface-tint": "#29695b",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#dbdad9",
+                      "on-background": "#1b1c1c",
+                      "on-surface-variant": "#3f4945",
+                      "on-surface": "#1b1c1c",
+                      "secondary-fixed": "#e5e2e1",
+                      "outline": "#707975",
+                      "on-primary": "#ffffff",
+                      "secondary": "#5f5e5e",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#474746",
+                      "on-secondary-container": "#636262",
+                      "on-tertiary-container": "#b1b1af",
+                      "inverse-on-surface": "#f2f0f0",
+                      "background": "#fbf9f9",
+                      "primary-container": "#004d40",
+                      "tertiary-container": "#434443",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#00201a",
+                      "surface-bright": "#fbf9f9",
+                      "on-primary-container": "#7ebdac",
+                      "primary-fixed-dim": "#94d3c1",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "tertiary-fixed": "#e3e2e0",
+                      "on-primary-fixed-variant": "#065043",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "outline-variant": "#bfc9c4",
+                      "primary-fixed": "#afefdd",
+                      "primary": "#00342b",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "surface-container-highest": "#e3e2e2",
+                      "surface-variant": "#e3e2e2",
+                      "surface": "#fbf9f9",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "40px",
+                      "stack-sm": "16px",
+                      "stack-lg": "80px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "display-lg": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto h-20 px-margin-mobile md:px-margin-desktop flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="home.html" class="font-display-lg text-headline-sm tracking-tighter text-primary whitespace-nowrap">
+            AURELIUS 3D
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+
+            <a href="home.html"
+                class="font-label-md text-primary border-b-2 border-primary pb-1 transition-colors">
+                Home
+            </a>
+
+            <a href="about_the_studio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                About
+            </a>
+
+            <a href="portfolio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Portfolio
+            </a>
+
+            <a href="custom_order.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Custom Order
+            </a>
+
+            <a href="contact_us.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Contact
+            </a>
+
+        </nav>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-2">
+
+            <!-- Checkout -->
+            <a href="checkout.html"
+                class="p-2 rounded-full text-primary hover:bg-surface-container hover:scale-95 transition-all duration-200">
+
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+
+            </a>
+
+            <!-- Mobile Navigation -->
+            <details class="relative md:hidden">
+
+                <summary class="list-none cursor-pointer p-2 rounded-full text-primary hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </summary>
+
+                <div
+                    class="absolute right-0 top-14 w-64 rounded-2xl bg-background border border-outline-variant shadow-xl overflow-hidden">
+
+                    <a href="home.html"
+                        class="block px-6 py-4 text-primary font-medium border-l-4 border-primary bg-surface-container">
+                        Home
+                    </a>
+
+                    <a href="about_the_studio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        About the Studio
+                    </a>
+
+                    <a href="portfolio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Portfolio
+                    </a>
+
+                    <a href="custom_order.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Custom Order
+                    </a>
+
+                    <a href="contact_us.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Contact Us
+                    </a>
+
+                    <div class="border-t border-outline-variant"></div>
+
+                    <a href="checkout.html"
+                        class="flex items-center gap-3 px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+
+                        Checkout
+
+                    </a>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<span class="font-label-md text-label-md uppercase tracking-[0.2em] text-outline mb-4 block">Get In Touch</span>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-8">Let's Start a Conversation</h1>
+<div class="w-24 h-px bg-primary mx-auto opacity-20"></div>
+</section>
+<!-- Main Content: Contact & Studio Info -->
+<section class="pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Contact Form -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-[0px_10px_40px_rgba(26,26,26,0.04)]">
+<form action="#" class="space-y-10" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline py-2 focus:ring-0 focus:border-primary-container transition-all" id="name" placeholder=" " type="text"/>
+<label class="absolute left-0 top-2 text-secondary pointer-events-none transition-all font-label-md text-label-md" for="name">Name</label>
+</div>
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline py-2 focus:ring-0 focus:border-primary-container transition-all" id="email" placeholder=" " type="email"/>
+<label class="absolute left-0 top-2 text-secondary pointer-events-none transition-all font-label-md text-label-md" for="email">Email Address</label>
+</div>
+</div>
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline py-2 focus:ring-0 focus:border-primary-container transition-all" id="subject" placeholder=" " type="text"/>
+<label class="absolute left-0 top-2 text-secondary pointer-events-none transition-all font-label-md text-label-md" for="subject">Subject</label>
+</div>
+<div class="relative">
+<textarea class="peer w-full bg-transparent border-0 border-b border-outline py-2 focus:ring-0 focus:border-primary-container transition-all resize-none" id="message" placeholder=" " rows="4"></textarea>
+<label class="absolute left-0 top-2 text-secondary pointer-events-none transition-all font-label-md text-label-md" for="message">Your Message</label>
+</div>
+<button class="w-full md:w-auto px-12 py-4 bg-[#1A1A1A] text-white rounded-full font-label-md text-label-md hover:scale-105 active:scale-95 transition-all duration-300" type="submit">
+                            Send Message
+                        </button>
+</form>
+</div>
+<!-- Studio Info -->
+<div class="lg:col-span-5 lg:pl-12 space-y-12">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-6 text-primary">London Studio</h3>
+<p class="font-body-lg text-body-lg text-secondary mb-2">24 Artisan Row, Southwark</p>
+<p class="font-body-lg text-body-lg text-secondary mb-6">London, SE1 0TY, UK</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<a class="font-body-md text-body-md hover:text-primary-container transition-colors border-b border-transparent hover:border-primary-container" href="mailto:studio@aurelius3d.com">studio@aurelius3d.com</a>
+</div>
+<div class="flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-body-md text-body-md">+44 (0) 20 7946 0124</span>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant">
+<h3 class="font-label-md text-label-md uppercase tracking-widest mb-4 text-outline">Working Hours</h3>
+<div class="space-y-2 text-on-surface">
+<div class="flex justify-between font-body-md text-body-md">
+<span class="text-secondary">Tue — Fri</span>
+<span>10:00 — 18:00</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md">
+<span class="text-secondary">Saturday</span>
+<span>11:00 — 16:00</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md">
+<span class="text-secondary">Sun — Mon</span>
+<span class="text-error italic">By Appointment Only</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-label-md text-label-md uppercase tracking-widest mb-6 text-outline">Social Gallery</h3>
+<div class="flex gap-8">
+<a class="group" href="#">
+<span class="material-symbols-outlined text-[28px] text-secondary group-hover:text-primary-container transition-all group-hover:scale-110" data-icon="photo_camera">photo_camera</span>
+<p class="sr-only">Instagram</p>
+</a>
+<a class="group" href="#">
+<span class="material-symbols-outlined text-[28px] text-secondary group-hover:text-primary-container transition-all group-hover:scale-110" data-icon="palette">palette</span>
+<p class="sr-only">Behance</p>
+</a>
+<a class="group" href="#">
+<span class="material-symbols-outlined text-[28px] text-secondary group-hover:text-primary-container transition-all group-hover:scale-110" data-icon="work">work</span>
+<p class="sr-only">LinkedIn</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="w-full h-[400px] mb-stack-lg overflow-hidden grayscale contrast-125 opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+<div class="w-full h-full bg-cover bg-center" data-alt="A minimalist architectural map of Southwark, London, showing clean white streets and stylized grey buildings in a boutique gallery style. The map has a professional, high-contrast aesthetic with subtle charcoal accents, fitting the modern artisanship brand identity of a premium 3D sculpture studio." data-location="London" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGHbVpullV_Rt80pGTNwiA6gsnOS1G-9IgKipVJiEbQyZGjUws-q0XP415YTD3nvLeQiHESxlEhYpljjdqhSLv0F64ZIDQT84Lv5ebFlBOa5MFOIacW_uUcjQ5crB0XeQRQ_V9hkQ2Sqsy9riCs7Fue2bGdOr1f4f3hXknApr5ou_DJOyFS_baZDTRB1RDeAUfLhucf7zwXOz96WQCNQnuv_kAzBfN_tk3i3cmGpkVcfoohy0jx7g')"></div>
+</section>
+<!-- FAQ Section -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-12">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="faq-item group border-b border-outline-variant">
+<button class="w-full py-6 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-sm text-body-lg text-on-surface">What is the turnaround time?</span>
+<span class="material-symbols-outlined arrow transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden pb-6">
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                            Each sculpture is a unique journey of precision. Standard turnaround for catalogue pieces is 2-3 weeks. Custom commissions typically require 6-8 weeks, depending on the complexity of the 3D geometry and the chosen finishing material.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item group border-b border-outline-variant">
+<button class="w-full py-6 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-sm text-body-lg text-on-surface">Do you ship internationally?</span>
+<span class="material-symbols-outlined arrow transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden pb-6">
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                            Yes, we provide white-glove international shipping. All pieces are secured in custom-built museum-grade crates to ensure they arrive in pristine condition, regardless of their destination.
+                        </p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item group border-b border-outline-variant">
+<button class="w-full py-6 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+<span class="font-headline-sm text-body-lg text-on-surface">Can I request changes mid-process?</span>
+<span class="material-symbols-outlined arrow transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="hidden pb-6">
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                            We offer a consultation phase where digital proofs are approved. Once the physical additive manufacturing process begins, structural changes are limited. However, surface finishes can often be adjusted before the final curing or plating stage.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container py-stack-lg mt-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-4">
+<div class="font-display-lg text-headline-sm text-primary">AURELIUS 3D</div>
+<p class="font-body-md text-body-md text-secondary">Bridging the gap between traditional sculpture and high-technology 3D manufacturing.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Collections</a></li>
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Process</a></li>
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Atelier News</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Support</h4>
+<ul class="space-y-2">
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Shipping Policy</a></li>
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Terms of Service</a></li>
+<li><a class="font-label-md text-label-md text-secondary hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Inquiries</h4>
+<p class="font-body-md text-body-md text-secondary">Ready to start a custom commission?</p>
+<a class="inline-block font-label-md text-label-md text-primary font-semibold custom-underline relative" href="#">Get a Quote</a>
+</div>
+</div>
+<div class="mt-stack-md px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-md text-label-md text-secondary">© 2024 AURELIUS 3D STUDIO. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="language">language</span>
+<span class="font-label-md text-label-md text-secondary">English (UK)</span>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth floating label behavior and micro-interactions
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.querySelector('label').style.color = '#004D40';
+            });
+            el.addEventListener('blur', () => {
+                if(!el.value) {
+                    el.parentElement.querySelector('label').style.color = '';
+                }
+            });
+        });
+
+        // Atmospheric reveal on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

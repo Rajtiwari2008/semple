@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURELIUS 3D | Custom Order Configurator</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#e2dfde",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#94d3c1",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "tertiary": "#2d2e2d",
+                    "inverse-surface": "#303031",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container": "#efeded",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#29695b",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dbdad9",
+                    "on-background": "#1b1c1c",
+                    "on-surface-variant": "#3f4945",
+                    "on-surface": "#1b1c1c",
+                    "secondary-fixed": "#e5e2e1",
+                    "outline": "#707975",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-container": "#636262",
+                    "on-tertiary-container": "#b1b1af",
+                    "inverse-on-surface": "#f2f0f0",
+                    "background": "#fbf9f9",
+                    "primary-container": "#004d40",
+                    "tertiary-container": "#434443",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00201a",
+                    "surface-bright": "#fbf9f9",
+                    "on-primary-container": "#7ebdac",
+                    "primary-fixed-dim": "#94d3c1",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e3e2e0",
+                    "on-primary-fixed-variant": "#065043",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "outline-variant": "#bfc9c4",
+                    "primary-fixed": "#afefdd",
+                    "primary": "#00342b",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "surface-container-highest": "#e3e2e2",
+                    "surface-variant": "#e3e2e2",
+                    "surface": "#fbf9f9",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "40px",
+                    "stack-sm": "16px",
+                    "stack-lg": "80px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                    "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                    "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .drag-active {
+            border-color: #004d40;
+            background-color: rgba(0, 77, 64, 0.05);
+            transform: scale(1.01);
+        }
+        input:focus ~ label, textarea:focus ~ label {
+            color: #004d40;
+            transform: translateY(-20px) scale(0.9);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #004d40;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto h-20 px-margin-mobile md:px-margin-desktop flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="#" class="font-display-lg text-headline-sm tracking-tighter text-primary whitespace-nowrap">
+            AURELIUS 3D
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-10">
+            <a href="#" class="font-label-md text-primary border-b-2 border-primary pb-1">
+                Home
+            </a>
+
+            <a href="#" class="font-label-md text-secondary hover:text-primary transition-colors">
+                About
+            </a>
+
+            <a href="#" class="font-label-md text-secondary hover:text-primary transition-colors">
+                Products
+            </a>
+
+            <a href="#" class="font-label-md text-secondary hover:text-primary transition-colors">
+                Custom Order
+            </a>
+
+            <a href="#" class="font-label-md text-secondary hover:text-primary transition-colors">
+                Contact
+            </a>
+        </nav>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-3">
+
+            <!-- Cart -->
+            <button class="p-2 text-primary hover:scale-95 transition-transform">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+            </button>
+
+            <!-- Mobile Menu -->
+            <details class="relative md:hidden">
+
+                <summary class="list-none cursor-pointer p-2 text-primary">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </summary>
+
+                <div class="absolute right-0 top-14 w-56 rounded-xl border border-outline-variant bg-background shadow-xl overflow-hidden">
+
+                    <a href="#" class="block px-5 py-4 text-primary border-l-2 border-primary">
+                        Home
+                    </a>
+
+                    <a href="#" class="block px-5 py-4 text-secondary hover:text-primary transition-colors">
+                        About
+                    </a>
+
+                    <a href="#" class="block px-5 py-4 text-secondary hover:text-primary transition-colors">
+                        Products
+                    </a>
+
+                    <a href="#" class="block px-5 py-4 text-secondary hover:text-primary transition-colors">
+                        Custom Order
+                    </a>
+
+                    <a href="#" class="block px-5 py-4 text-secondary hover:text-primary transition-colors">
+                        Contact
+                    </a>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Header Section & Stepper -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto h-20 px-margin-mobile md:px-margin-desktop flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="home.html" class="font-display-lg text-headline-sm tracking-tighter text-primary whitespace-nowrap">
+            AURELIUS 3D
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+
+            <a href="home.html"
+                class="font-label-md text-primary border-b-2 border-primary pb-1 transition-colors">
+                Home
+            </a>
+
+            <a href="about_the_studio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                About
+            </a>
+
+            <a href="portfolio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Portfolio
+            </a>
+
+            <a href="custom_order.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Custom Order
+            </a>
+
+            <a href="contact_us.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Contact
+            </a>
+
+        </nav>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-2">
+
+            <!-- Checkout -->
+            <a href="checkout.html"
+                class="p-2 rounded-full text-primary hover:bg-surface-container hover:scale-95 transition-all duration-200">
+
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+
+            </a>
+
+            <!-- Mobile Navigation -->
+            <details class="relative md:hidden">
+
+                <summary class="list-none cursor-pointer p-2 rounded-full text-primary hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </summary>
+
+                <div
+                    class="absolute right-0 top-14 w-64 rounded-2xl bg-background border border-outline-variant shadow-xl overflow-hidden">
+
+                    <a href="home.html"
+                        class="block px-6 py-4 text-primary font-medium border-l-4 border-primary bg-surface-container">
+                        Home
+                    </a>
+
+                    <a href="about_the_studio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        About the Studio
+                    </a>
+
+                    <a href="portfolio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Portfolio
+                    </a>
+
+                    <a href="custom_order.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Custom Order
+                    </a>
+
+                    <a href="contact_us.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Contact Us
+                    </a>
+
+                    <div class="border-t border-outline-variant"></div>
+
+                    <a href="checkout.html"
+                        class="flex items-center gap-3 px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+
+                        Checkout
+
+                    </a>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Configuration Area -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Step 1: Upload (Mock Active) -->
+<section class="step-transition">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Phase One</span>
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+</div>
+<h2 class="font-headline-md text-headline-md mb-6 italic">Share your inspiration</h2>
+<div class="relative group cursor-pointer border border-dashed border-outline rounded-xl p-12 text-center bg-surface-container-lowest transition-all hover:shadow-[0px_10px_40px_rgba(26,26,26,0.04)]" id="drop-zone">
+<div class="flex flex-col items-center gap-4 py-12">
+<span class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors">cloud_upload</span>
+<div>
+<p class="font-body-lg text-on-surface">Drag &amp; drop your sketches or reference photos</p>
+<p class="text-sm text-secondary mt-1">High resolution .JPG or .PNG preferred</p>
+</div>
+<button class="mt-4 px-8 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-primary/10">Browse Files</button>
+</div>
+<!-- File Requirements Tooltip -->
+<div class="absolute bottom-4 right-4 group/tooltip">
+<span class="material-symbols-outlined text-outline cursor-help hover:text-primary transition-colors">info</span>
+<div class="absolute bottom-full right-0 mb-2 w-64 p-4 bg-primary-container text-on-primary-container text-xs rounded-lg opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity z-10 shadow-xl">
+<p class="font-bold mb-1">Requirements:</p>
+<ul class="list-disc pl-4 space-y-1">
+<li>Minimum 1080px width</li>
+<li>Max file size 25MB</li>
+<li>Supports: JPG, PNG, TIFF, HEIC</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Specifications -->
+<section class="step-transition border-t border-outline-variant/30 pt-stack-lg">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Phase Two</span>
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+</div>
+<h2 class="font-headline-md text-headline-md mb-8">Refine the Craft</h2>
+<form class="space-y-12">
+<!-- Size Selector -->
+<div class="space-y-4">
+<label class="font-label-md text-label-md text-primary uppercase block">Dimensions</label>
+<div class="flex flex-wrap gap-4">
+<button class="flex-1 min-w-[120px] py-4 px-6 border border-outline-variant rounded-xl hover:border-primary transition-colors focus:ring-2 focus:ring-primary/20 text-center group active:scale-95" type="button">
+<div class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary">Small</div>
+<div class="text-xs text-secondary mt-1">8cm Height</div>
+</button>
+<button class="flex-1 min-w-[120px] py-4 px-6 border-2 border-primary rounded-xl bg-primary-container/5 text-center group active:scale-95" type="button">
+<div class="font-headline-sm text-headline-sm text-primary">Medium</div>
+<div class="text-xs text-primary mt-1">15cm Height</div>
+</button>
+<button class="flex-1 min-w-[120px] py-4 px-6 border border-outline-variant rounded-xl hover:border-primary transition-colors focus:ring-2 focus:ring-primary/20 text-center group active:scale-95" type="button">
+<div class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary">Large</div>
+<div class="text-xs text-secondary mt-1">25cm Height</div>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Material -->
+<div class="space-y-4">
+<label class="font-label-md text-label-md text-primary uppercase block">Material Alchemy</label>
+<select class="w-full bg-surface-container-low border-none border-b border-on-surface/30 focus:border-primary focus:ring-0 rounded-t-lg px-4 py-4 font-body-md text-on-surface transition-colors cursor-pointer">
+<option value="standard">Standard Resin (High Precision)</option>
+<option value="bronze">Bronze-Infused (Weighty/Lustrous)</option>
+</select>
+<p class="text-[10px] text-secondary tracking-wider uppercase">Museum-grade archival quality guaranteed.</p>
+</div>
+<!-- Finish -->
+<div class="space-y-4">
+<label class="font-label-md text-label-md text-primary uppercase block">Surface Finish</label>
+<div class="flex gap-6 pt-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 text-primary border-outline-variant focus:ring-primary cursor-pointer" name="finish" type="radio" value="full"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Full Paint</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary cursor-pointer" name="finish" type="radio" value="mono"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Monochrome Wash</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Notes -->
+<div class="space-y-4">
+<label class="font-label-md text-label-md text-primary uppercase block">Special Details</label>
+<textarea class="w-full bg-surface-container-low border-none border-b border-on-surface/30 focus:border-primary focus:ring-0 rounded-t-lg p-6 font-body-md placeholder:text-outline italic resize-none custom-scrollbar" placeholder="Specify pose nuances, base styles, or thematic elements..." rows="4"></textarea>
+</div>
+</form>
+</section>
+</div>
+<!-- Price Sidebar / Summary -->
+<aside class="lg:col-span-4 lg:sticky lg:top-32 space-y-gutter">
+<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-[0px_10px_40px_rgba(26,26,26,0.04)] border border-outline-variant/20">
+<h3 class="font-headline-sm text-headline-sm mb-6 border-b border-outline-variant pb-4">Estimate Summary</h3>
+<div class="space-y-4 font-body-md text-on-surface">
+<div class="flex justify-between items-center">
+<span class="text-secondary">Base Sculpture</span>
+<span class="font-medium">$99.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Medium Size Multiplier</span>
+<span class="font-medium">+$50.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Standard Resin</span>
+<span class="font-medium">Included</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Shipping</span>
+<span class="text-primary-container font-semibold">Free</span>
+</div>
+<div class="pt-6 mt-4 border-t border-outline-variant flex justify-between items-end">
+<div>
+<div class="text-[10px] text-secondary uppercase tracking-[0.2em] font-bold">Total Estimate</div>
+<div class="font-display-lg text-headline-lg text-primary">$149.00</div>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-primary/30">verified</span>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<button class="w-full py-5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:scale-102 transition-all active:scale-95 shadow-xl shadow-primary/20">
+                            Proceed to Review
+                        </button>
+<p class="text-center text-xs text-secondary px-4">
+                            Price may vary slightly after artisan review of file complexity.
+                        </p>
+</div>
+</div>
+<!-- Subtle Help Card -->
+<div class="p-6 bg-primary-container text-on-primary-container rounded-2xl flex items-start gap-4">
+<span class="material-symbols-outlined mt-1">support_agent</span>
+<div>
+<h4 class="font-label-md text-label-md mb-1">Need Guidance?</h4>
+<p class="text-xs opacity-80 leading-relaxed">Our master sculptors are available for a 15-min visual consultation via chat.</p>
+<button class="mt-3 text-xs font-bold underline underline-offset-4 decoration-white/30 hover:decoration-white transition-all">Start Consultation</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container py-stack-lg border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-6">
+<div class="font-display-lg text-headline-sm text-primary">AURELIUS 3D</div>
+<p class="font-body-md text-body-md text-secondary max-w-[240px]">
+                    Blending classical aesthetics with additive manufacturing precision.
+                </p>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-widest">Quick Links</h5>
+<ul class="space-y-4 font-body-md text-secondary">
+<li><a class="hover:text-primary transition-colors" href="#">Process Gallery</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Material Science</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Wholesale</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-widest">Contact</h5>
+<ul class="space-y-4 font-body-md text-secondary">
+<li>atelier@aurelius3d.com</li>
+<li>Studio 4B, Design District</li>
+<li>New York, NY 10011</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Newsletter</h5>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-outline py-2 focus:outline-none focus:border-primary transition-colors" placeholder="Email Address" type="email"/>
+<button class="absolute right-0 bottom-2">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">public</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">camera</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">share</span>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-outline-variant/20 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-md text-label-md text-secondary">© 2024 AURELIUS 3D STUDIO. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8 font-label-md text-label-md text-secondary">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple drag & drop interaction
+        const dropZone = document.getElementById('drop-zone');
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-active');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-active');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            console.log('Files dropped:', files);
+            // In a real app, handle file processing here
+        });
+
+        // Micro-interaction for size buttons
+        const sizeButtons = document.querySelectorAll('button[type="button"]');
+        sizeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sizeButtons.forEach(b => {
+                    b.classList.remove('border-2', 'border-primary', 'bg-primary-container/5');
+                    b.classList.add('border', 'border-outline-variant');
+                    const textElems = b.querySelectorAll('div');
+                    textElems[0].classList.remove('text-primary');
+                    textElems[0].classList.add('text-on-surface');
+                    textElems[1].classList.remove('text-primary');
+                    textElems[1].classList.add('text-secondary');
+                });
+                btn.classList.remove('border', 'border-outline-variant');
+                btn.classList.add('border-2', 'border-primary', 'bg-primary-container/5');
+                const activeTexts = btn.querySelectorAll('div');
+                activeTexts[0].classList.add('text-primary');
+                activeTexts[0].classList.remove('text-on-surface');
+                activeTexts[1].classList.add('text-primary');
+                activeTexts[1].classList.remove('text-secondary');
+            });
+        });
+    </script>
+</body></html>

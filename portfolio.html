@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio | AURELIUS 3D STUDIO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#e2dfde",
+                        "surface-container-high": "#e9e8e7",
+                        "inverse-primary": "#94d3c1",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "tertiary": "#2d2e2d",
+                        "inverse-surface": "#303031",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container": "#efeded",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#29695b",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#dbdad9",
+                        "on-background": "#1b1c1c",
+                        "on-surface-variant": "#3f4945",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline": "#707975",
+                        "on-primary": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary-container": "#636262",
+                        "on-tertiary-container": "#b1b1af",
+                        "inverse-on-surface": "#f2f0f0",
+                        "background": "#fbf9f9",
+                        "primary-container": "#004d40",
+                        "tertiary-container": "#434443",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#00201a",
+                        "surface-bright": "#fbf9f9",
+                        "on-primary-container": "#7ebdac",
+                        "primary-fixed-dim": "#94d3c1",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#e3e2e0",
+                        "on-primary-fixed-variant": "#065043",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "outline-variant": "#bfc9c4",
+                        "primary-fixed": "#afefdd",
+                        "primary": "#00342b",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-variant": "#e3e2e2",
+                        "surface": "#fbf9f9",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "40px",
+                        "stack-sm": "16px",
+                        "stack-lg": "80px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .ambient-lift {
+            box-shadow: 0px 10px 40px rgba(26, 26, 26, 0.04);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto h-20 px-margin-mobile md:px-margin-desktop flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="home.html" class="font-display-lg text-headline-sm tracking-tighter text-primary whitespace-nowrap">
+            AURELIUS 3D
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+
+            <a href="home.html"
+                class="font-label-md text-primary border-b-2 border-primary pb-1 transition-colors">
+                Home
+            </a>
+
+            <a href="about_the_studio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                About
+            </a>
+
+            <a href="portfolio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Portfolio
+            </a>
+
+            <a href="custom_order.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Custom Order
+            </a>
+
+            <a href="contact_us.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Contact
+            </a>
+
+        </nav>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-2">
+
+            <!-- Checkout -->
+            <a href="checkout.html"
+                class="p-2 rounded-full text-primary hover:bg-surface-container hover:scale-95 transition-all duration-200">
+
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+
+            </a>
+
+            <!-- Mobile Navigation -->
+            <details class="relative md:hidden">
+
+                <summary class="list-none cursor-pointer p-2 rounded-full text-primary hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </summary>
+
+                <div
+                    class="absolute right-0 top-14 w-64 rounded-2xl bg-background border border-outline-variant shadow-xl overflow-hidden">
+
+                    <a href="home.html"
+                        class="block px-6 py-4 text-primary font-medium border-l-4 border-primary bg-surface-container">
+                        Home
+                    </a>
+
+                    <a href="about_the_studio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        About the Studio
+                    </a>
+
+                    <a href="portfolio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Portfolio
+                    </a>
+
+                    <a href="custom_order.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Custom Order
+                    </a>
+
+                    <a href="contact_us.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Contact Us
+                    </a>
+
+                    <div class="border-t border-outline-variant"></div>
+
+                    <a href="checkout.html"
+                        class="flex items-center gap-3 px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+
+                        Checkout
+
+                    </a>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-stack-lg min-h-screen">
+<!-- Hero Section -->
+<header class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-md text-center">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">The Portfolio</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto italic">Explore our curated collection of hand-finished 3D sculptures, where digital precision meets the warmth of artisanal craftsmanship.</p>
+</header>
+<!-- Filter Bar -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-stack-md">
+<div class="flex flex-wrap justify-center gap-4 md:gap-8 border-b border-outline-variant pb-6">
+<button class="filter-btn group relative font-label-md text-label-md text-primary active-filter" onclick="filterGallery('All')">
+                    All
+                    <div class="absolute -bottom-6 left-0 w-full h-0.5 bg-primary transition-all duration-300"></div>
+</button>
+<button class="filter-btn group relative font-label-md text-label-md text-secondary hover:text-primary transition-colors" onclick="filterGallery('Portraits')">
+                    Portraits
+                    <div class="absolute -bottom-6 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+</button>
+<button class="filter-btn group relative font-label-md text-label-md text-secondary hover:text-primary transition-colors" onclick="filterGallery('Pets')">
+                    Pets
+                    <div class="absolute -bottom-6 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+</button>
+<button class="filter-btn group relative font-label-md text-label-md text-secondary hover:text-primary transition-colors" onclick="filterGallery('Characters')">
+                    Characters
+                    <div class="absolute -bottom-6 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+</button>
+<button class="filter-btn group relative font-label-md text-label-md text-secondary hover:text-primary transition-colors" onclick="filterGallery('Couples')">
+                    Couples
+                    <div class="absolute -bottom-6 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+</button>
+</div>
+</section>
+<!-- Gallery Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="portfolio-grid">
+<!-- Card 1 -->
+<div class="portfolio-item group cursor-pointer" data-category="Couples" onclick="openModal('The Modern Wedding Couple', 'Couples', '15cm', '{{DATA:IMAGE:IMG_1}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A macro studio photograph of a highly detailed 3D-printed sculpture of a couple in wedding attire. The material has a premium matte white resin finish with subtle bronze-infused highlights in the textures of the dress. The lighting is soft and cinematic, coming from the side to emphasize the intricate drapery of the fabric and the tender expression on the faces. The background is a soft, warm neutral tone that complements the boutique minimalism of the studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO87sV9_kmRHnFOQz_SbyFDuyF0elrhPSOYEkObxFjT05YU5mQEA0hGHGhbcpGVwRWIONxGveIdr2UXJj6RmCjK_u-p0XBkIhxGvs0n9QNM9R-sv_uJSrw0dlWJgW9f4c8beT1zc_MMg9hvVHKTnqQDm7i6lsDFqdpITFKidGvfUkRLvgr_W4CKu09pBMZ5E0gOvDYFVSEX5OJ_9Wh10iAFiKqiAkZXg0RVgVfloP1bCWrmr8WSPU"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Couples</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">The Modern Wedding Couple</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 15cm</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="portfolio-item group cursor-pointer" data-category="Pets" onclick="openModal('Noble Hound', 'Pets', '12cm', '{{DATA:IMAGE:IMG_2}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A sophisticated 3D sculpture of a Greyhound dog sitting in a noble pose, captured with professional gallery lighting. The sculpture is rendered in a deep charcoal basalt-like material with a faint semi-gloss sheen that catches the light on its slender muscles. The setting is a minimalist white void, ensuring the focus remains entirely on the anatomical precision and the smooth texture of the piece. The mood is one of quiet dignity and modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh5VbMGQeiOhhXR2ImEsRYFoIhPlSYK2dHa0pAaCJ9reuAOuqSg4jJt6RffkFkLslc_gkRc0lFcnrzf4tWywdRJ_CbIWlh5O7Sm-SNMO8QAJNVk3BWLUiVqOFuGSPjLCsx9n218_hS_FeCCNekOJORBUdIWkllQcJycfzskA9vdZp6RA-Oxuq1ACFekwWMP7qdmatllooxZRFeHll-SC9I3dGBcgSp0khjdhs_9Hroxw7FnBh0seI"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Pets</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Noble Hound</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 12cm</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="portfolio-item group cursor-pointer" data-category="Portraits" onclick="openModal('Grandfather Memory', 'Portraits', '20cm', '{{DATA:IMAGE:IMG_3}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A poignant 3D-sculpted portrait bust of an elderly man with detailed facial features and realistic textures. The sculpture is made from a warm, alabaster-like material that glows slightly under soft backlight. The artisanal craftsmanship is evident in the fine lines around the eyes and the textured hair. The shot is a close-up profile, highlighting the depth and dimensionality of the work against a serene, light-colored background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjAx1LWSeCfnqiSHd6anezXBdGOQ9d2JJk-7VxeVbhxXf6vlcAwel5rQBQssxi4hRfl-qvqQWrbFPfCtjX2H41lcepUoXfokujiy70bXWT_jNe9E2rQQSwJgt01k33tjPqvNXq381NinwmQzNjF8pgEre9sNtisEe4zeeeE0zqwf2yC4d5_fkkPjBC2k5QRarnAbju8CIvBNlowDHS-v2gf8X82eDhlsgL4QRuZOLHCkF3MkXlzts"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Portraits</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Grandfather Memory</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 20cm</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="portfolio-item group cursor-pointer" data-category="Characters" onclick="openModal('The Cyber Ronin', 'Characters', '25cm', '{{DATA:IMAGE:IMG_4}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A dynamic action sculpture of a futuristic samurai character, featuring a mix of matte black armor and polished metallic copper accents. The 3D print shows incredible detail in the layered plates and the traditional sword hilt. The lighting is high-contrast, using a cool blue key light and a warm orange rim light to create a sense of movement and drama. The sculpture stands on a minimalist dark stone plinth in a high-end gallery setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_OKwU3e3p7165QIGVjBksMpc8xHwD0kG6S60b0AYIBC3ZehhJHYplzaiqbDD6xpjvFj2ZNNXhrGjt_xKUnSFkyxWI3ULgv5qpmHfq8tJPMHo6j4mdB3QP4u_XroFio1-LHVCYVyaO-3ukyDtfsJTYJBtTXXzc1aqT5ELwe0x4IycgHxRmUYgP-q5CLjOM1J77q2h5L0Lg2iudkuJBvDVO2wS2aQOAGIjVqfsIQwdPtyjMC0zCJ14"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Characters</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">The Cyber Ronin</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 25cm</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="portfolio-item group cursor-pointer" data-category="Pets" onclick="openModal('Calico Dream', 'Pets', '10cm', '{{DATA:IMAGE:IMG_5}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="An adorable and highly detailed 3D sculpture of a sleeping calico cat, curled into a perfect ball. The sculpture is colored with a soft, hand-painted aesthetic that mimics natural fur patterns. The material is a smooth satin resin that gives it a gentle, tactile quality. The photograph uses a shallow depth of field, with a soft-focus wooden surface in the background and bright, airy window light illuminating the cat's delicate features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzeR34r-lx-8FdG1lhR4rDogDFUfkSNIqLpcu-s_AudYUlfO6QEdjoYry7oTpkxf_RKxoz70LSMT7MlqgM1y3KoRl2QxgvuTYYzTMIerhBCgtnkmZFcq-gtkJ0Q4LGEh9H6E5fOZj-blXKP6c4vE6GC6CzmFWq3O5o3H8O51IMK8ObNJjcLi-3EEQJQxcPGiBWhT1RZvNweFxHIXHwfaAqmPu0Wl9Agv6vxxP3rrA3el8N4NoJKac"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Pets</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Calico Dream</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 10cm</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="portfolio-item group cursor-pointer" data-category="Couples" onclick="openModal('Eternal Waltz', 'Couples', '18cm', '{{DATA:IMAGE:IMG_6}}')">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6 ambient-lift group-hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A graceful 3D-sculpted representation of two dancers in a waltz pose, their bodies merging in a fluid, abstract form that conveys movement. The sculpture is finished in a luxurious brushed-brass effect with a deep patina in the recesses. The composition is set against a dark, moody background that makes the golden tones of the metal pop. The lighting is focused and dramatic, highlighting the elegant curves and the dynamic energy of the pose." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBueN13rYtnYgRXYM1G_TtZFpj7tdI5cy_G8MGIp1_iuf8GuH0pnJi5R0FpQYC86gZg8K2uCwBhBeoHbj8-RNqc7_w09YRNS-rkNf3mWGyZmXjQvnW5v4KDGKP1k5FhGfKikCl344upV6bVrtujILJeUffrz7i5NPlbfqQjXy6Tcz404J5RBbiYhaYjsUv9JIymAKlD4yBMzLUbNHqg4IA-BAxF7Xl4abpwbn-o5OIFGB4nwoF8BaE"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<span class="bg-on-primary text-primary font-label-md text-label-md px-6 py-3 rounded-full uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-xl">View Details</span>
+</div>
+</div>
+<div class="px-2">
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-2 block">Couples</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Eternal Waltz</h3>
+<p class="font-body-md text-body-md text-secondary italic">Height: 18cm</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Product Detail Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] hidden overflow-y-auto" id="product-modal" role="dialog">
+<div class="min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop">
+<div class="fixed inset-0 bg-primary/60 backdrop-blur-sm" onclick="closeModal()"></div>
+<div class="relative bg-surface-bright w-full max-w-5xl rounded-lg overflow-hidden shadow-2xl flex flex-col md:flex-row animate-in fade-in zoom-in duration-300">
+<button class="absolute top-6 right-6 z-10 text-primary hover:scale-110 transition-transform" onclick="closeModal()">
+<span class="material-symbols-outlined text-3xl" data-icon="close">close</span>
+</button>
+<!-- Left: Image Gallery -->
+<div class="w-full md:w-1/2 bg-surface-container overflow-hidden h-[400px] md:h-auto">
+<img class="w-full h-full object-cover" data-alt="A hyper-detailed, multi-angle view of a premium 3D sculpture in a gallery setting. The lighting is soft and professional, highlighting the micro-textures of the hand-finished resin surface. The color palette consists of creamy whites and soft greys, echoing a high-end boutique aesthetic. The focus is sharp on the intricate craftsmanship, demonstrating the fusion of digital design and artisanal finishing." id="modal-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARs78CSUBObHeXscUE41QS3XAUEY-iTBGeclxEsNsnf-qoKjmB6IlYhg1CQviWb6UgW_LG87gJEsJCgdE215gdAL9PefUfzqKp9iacDBNvmnMY9f2Ezovf14Qtbl0wgdqJDggNisnK2_0da7cQY9gKpnVFDSMt_hYj-Tvx5phe192TgHtUOJ8YvLlgkxLKsHb21a4Bco6wcpuhfn9Cez0C2FkHYgo7M4SQ6acXhGNyHRWqCViIZR8"/>
+</div>
+<!-- Right: Content & Pricing -->
+<div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between bg-white">
+<div>
+<span class="font-label-md text-label-md text-primary/60 uppercase tracking-widest mb-4 block" id="modal-category">CATEGORY</span>
+<h2 class="font-headline-lg text-headline-md md:text-headline-lg text-on-surface mb-6" id="modal-title">Product Title</h2>
+<p class="font-body-md text-body-md text-secondary mb-8">Each piece is individually calibrated for structural integrity and hand-sanded to achieve our signature smooth-touch finish. This style represents our 'Legacy' tier of detailing.</p>
+<div class="space-y-4 mb-10">
+<h4 class="font-label-md text-label-md text-primary uppercase tracking-wider border-b border-outline-variant pb-2">Pricing &amp; Sizes</h4>
+<div class="grid grid-cols-2 gap-y-2">
+<span class="font-body-md text-secondary">Small (10cm)</span>
+<span class="font-body-md text-on-surface text-right font-semibold">$120.00</span>
+<span class="font-body-md text-secondary">Medium (15cm)</span>
+<span class="font-body-md text-on-surface text-right font-semibold">$185.00</span>
+<span class="font-body-md text-secondary">Large (20cm)</span>
+<span class="font-body-md text-on-surface text-right font-semibold">$250.00</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-10">
+<span class="px-3 py-1 border border-outline text-label-md font-label-md text-[10px] uppercase rounded-sm">Hand-Sanded</span>
+<span class="px-3 py-1 border border-outline text-label-md font-label-md text-[10px] uppercase rounded-sm">Premium Resin</span>
+<span class="px-3 py-1 border border-outline text-label-md font-label-md text-[10px] uppercase rounded-sm">Custom Finish</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary py-5 rounded-full font-label-md text-label-md uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                            Order This Style
+                        </button>
+<p class="text-center font-body-md text-label-md text-secondary text-[12px]">Starts at $120. Custom poses available upon request.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-dim pt-stack-lg pb-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-stack-md">
+<div class="space-y-4">
+<span class="font-display-lg text-headline-sm text-primary">AURELIUS 3D</span>
+<p class="font-body-md text-secondary">Capturing moments in three dimensions through artisan craftsmanship and high-tech precision.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-6 tracking-widest">Quick Links</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">Portfolio</a></li>
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">Materials</a></li>
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">FAQ</a></li>
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">Shipping</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-6 tracking-widest">Connect</h4>
+<ul class="space-y-3">
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">Instagram</a></li>
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">Pinterest</a></li>
+<li><a class="font-body-md text-secondary hover:text-primary transition-all" href="#">LinkedIn</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary uppercase mb-6 tracking-widest">Inquiries</h4>
+<p class="font-body-md text-secondary mb-4">studio@aurelius3d.com</p>
+<button class="font-label-md text-label-md text-primary underline decoration-primary/30 underline-offset-8">Get a Quote</button>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-md text-label-md text-secondary/60">© 2024 AURELIUS 3D STUDIO. ALL RIGHTS RESERVED.</span>
+<div class="flex gap-6">
+<a class="font-label-md text-label-md text-secondary/60 hover:text-primary" href="#">Privacy</a>
+<a class="font-label-md text-label-md text-secondary/60 hover:text-primary" href="#">Terms</a>
+</div>
+</div>
+</footer>
+<script>
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update buttons
+            buttons.forEach(btn => {
+                const indicator = btn.querySelector('div');
+                if (btn.innerText.trim() === category) {
+                    btn.classList.add('text-primary');
+                    btn.classList.remove('text-secondary');
+                    indicator.classList.replace('w-0', 'w-full');
+                } else {
+                    btn.classList.remove('text-primary');
+                    btn.classList.add('text-secondary');
+                    indicator.classList.replace('w-full', 'w-0');
+                }
+            });
+
+            // Update items
+            items.forEach(item => {
+                if (category === 'All' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                }
+            });
+        }
+
+        function openModal(title, category, size, imgSrc) {
+            const modal = document.getElementById('product-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalCategory = document.getElementById('modal-category');
+            const modalImage = document.getElementById('modal-image');
+
+            modalTitle.innerText = title;
+            modalCategory.innerText = category;
+            
+            // Note: Since img src handling is controlled, we maintain data-alt integrity
+            // and simply update visible source for interactivity in this demo shell.
+            // modalImage.src = imgSrc; 
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body></html>

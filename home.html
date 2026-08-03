@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURELIUS 3D | Atelier Sculpt</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#e2dfde",
+                    "surface-container-high": "#e9e8e7",
+                    "inverse-primary": "#94d3c1",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "tertiary": "#2d2e2d",
+                    "inverse-surface": "#303031",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container": "#efeded",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#29695b",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dbdad9",
+                    "on-background": "#1b1c1c",
+                    "on-surface-variant": "#3f4945",
+                    "on-surface": "#1b1c1c",
+                    "secondary-fixed": "#e5e2e1",
+                    "outline": "#707975",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-container": "#636262",
+                    "on-tertiary-container": "#b1b1af",
+                    "inverse-on-surface": "#f2f0f0",
+                    "background": "#fbf9f9",
+                    "primary-container": "#004d40",
+                    "tertiary-container": "#434443",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00201a",
+                    "surface-bright": "#fbf9f9",
+                    "on-primary-container": "#7ebdac",
+                    "primary-fixed-dim": "#94d3c1",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e3e2e0",
+                    "on-primary-fixed-variant": "#065043",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "outline-variant": "#bfc9c4",
+                    "primary-fixed": "#afefdd",
+                    "primary": "#00342b",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "surface-container-highest": "#e3e2e2",
+                    "surface-variant": "#e3e2e2",
+                    "surface": "#fbf9f9",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "24px"
+            },
+            "spacing": {
+                    "stack-md": "40px",
+                    "stack-sm": "16px",
+                    "stack-lg": "80px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+      }
+      .ambient-shadow {
+        box-shadow: 0px 10px 40px rgba(26, 26, 26, 0.04);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 15px 50px rgba(26, 26, 26, 0.08);
+      }
+      .secondary-underline {
+        position: relative;
+      }
+      .secondary-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #004D40;
+        transition: width 0.3s ease;
+      }
+      .secondary-underline:hover::after {
+        width: 100%;
+      }
+      .stepper-line {
+        background: linear-gradient(90deg, #004D40 0%, #bfc9c4 100%);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed-dim selection:text-primary">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto h-20 px-margin-mobile md:px-margin-desktop flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="home.html" class="font-display-lg text-headline-sm tracking-tighter text-primary whitespace-nowrap">
+            AURELIUS 3D
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+
+            <a href="home.html"
+                class="font-label-md text-primary border-b-2 border-primary pb-1 transition-colors">
+                Home
+            </a>
+
+            <a href="about_the_studio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                About
+            </a>
+
+            <a href="portfolio.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Portfolio
+            </a>
+
+            <a href="custom_order.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Custom Order
+            </a>
+
+            <a href="contact_us.html"
+                class="font-label-md text-secondary hover:text-primary transition-colors">
+                Contact
+            </a>
+
+        </nav>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-2">
+
+            <!-- Checkout -->
+            <a href="checkout.html"
+                class="p-2 rounded-full text-primary hover:bg-surface-container hover:scale-95 transition-all duration-200">
+
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+
+            </a>
+
+            <!-- Mobile Navigation -->
+            <details class="relative md:hidden">
+
+                <summary class="list-none cursor-pointer p-2 rounded-full text-primary hover:bg-surface-container transition-all">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </summary>
+
+                <div
+                    class="absolute right-0 top-14 w-64 rounded-2xl bg-background border border-outline-variant shadow-xl overflow-hidden">
+
+                    <a href="home.html"
+                        class="block px-6 py-4 text-primary font-medium border-l-4 border-primary bg-surface-container">
+                        Home
+                    </a>
+
+                    <a href="about_the_studio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        About the Studio
+                    </a>
+
+                    <a href="portfolio.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Portfolio
+                    </a>
+
+                    <a href="custom_order.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Custom Order
+                    </a>
+
+                    <a href="contact_us.html"
+                        class="block px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+                        Contact Us
+                    </a>
+
+                    <div class="border-t border-outline-variant"></div>
+
+                    <a href="checkout.html"
+                        class="flex items-center gap-3 px-6 py-4 text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+
+                        Checkout
+
+                    </a>
+
+                </div>
+
+            </details>
+
+        </div>
+
+    </div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center py-stack-lg">
+<div class="z-10 space-y-stack-sm">
+<span class="font-label-md text-label-md text-primary-container tracking-widest uppercase">The Atelier Experience</span>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg leading-tight">
+                        Your Photo, Reimagined in 3D
+                    </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-md">
+                        Boutique 3D printing and hand-painted precision for your most cherished memories.
+                    </p>
+<div class="pt-stack-sm flex flex-col sm:flex-row gap-6">
+<button class="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-label-md text-label-md hover:scale-102 transition-transform active:scale-95">
+                            Start Your Custom Figure
+                        </button>
+<button class="text-[#004D40] font-label-md text-label-md secondary-underline py-4">
+                            View The Gallery
+                        </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary-fixed/20 rounded-full blur-3xl opacity-50 transition-opacity group-hover:opacity-70"></div>
+<img class="relative z-10 w-full aspect-[4/5] object-cover rounded-xl ambient-shadow hover-scale" data-alt="A hyper-realistic, macro photograph of a custom 3D printed resin figure of a person, showcasing intricate hand-painted textures and facial details. The lighting is dramatic and artistic, emphasizing the sculptural quality of the miniature. The background is a clean, neutral boutique studio setting with soft bokeh. The overall aesthetic is one of premium craftsmanship and effortless luxury, using a palette of soft greys and deep charcoal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKd6sY0r3UFpX0BgeW0mD2C5J_dV7gUIWDFI17uGtQPtnk4lKgj7DsgwzxLM_NiCyfdsPM_M7mMbwxTEeuZjUakpX4alCMIh0LGMs-j5RlgCMm8WQ2YpbdA-1o1mGwqyCcETIMwjQ1PDsKrlJCAW6MjadJJGI-E53cRGHa15eY_CO3Voiu9D0LVoI09P4lBUMIFpHXXrKsiddHr9UBC8QK-R5UZkcgjAy0RIsMy8D04R24mcQg64U"/>
+</div>
+</div>
+</section>
+<!-- How it Works Section -->
+<section class="bg-surface-container-lowest py-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Artistry in Four Steps</h2>
+<p class="font-body-md text-body-md text-secondary mt-4">A seamless journey from digital memory to physical masterpiece.</p>
+</div>
+<!-- Stepper Desktop -->
+<div class="hidden md:flex justify-between items-start relative px-12">
+<div class="absolute top-10 left-32 right-32 h-[1px] bg-outline-variant z-0"></div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+<div class="w-20 h-20 bg-background rounded-full border border-primary flex items-center justify-center mb-6 ambient-shadow">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Upload Photo</h3>
+<p class="font-body-md text-body-md text-secondary">Share high-res photos for our artists to study.</p>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+<div class="w-20 h-20 bg-background rounded-full border border-outline-variant flex items-center justify-center mb-6 ambient-shadow">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="aspect_ratio">aspect_ratio</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Choose Size</h3>
+<p class="font-body-md text-body-md text-secondary">Select from 4" miniatures to 12" centerpieces.</p>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+<div class="w-20 h-20 bg-background rounded-full border border-outline-variant flex items-center justify-center mb-6 ambient-shadow">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="brush">brush</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Print &amp; Paint</h3>
+<p class="font-body-md text-body-md text-secondary">Meticulous printing and hand-finishing.</p>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-[200px]">
+<div class="w-20 h-20 bg-background rounded-full border border-outline-variant flex items-center justify-center mb-6 ambient-shadow">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Delivered</h3>
+<p class="font-body-md text-body-md text-secondary">Insured white-glove shipping to your door.</p>
+</div>
+</div>
+<!-- Stepper Mobile -->
+<div class="md:hidden space-y-stack-md">
+<div class="flex gap-stack-sm items-start">
+<div class="w-12 h-12 shrink-0 bg-primary-container text-white rounded-full flex items-center justify-center">1</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Upload Photo</h3>
+<p class="font-body-md text-body-md text-secondary">Share high-res photos for our artists to study.</p>
+</div>
+</div>
+<div class="flex gap-stack-sm items-start">
+<div class="w-12 h-12 shrink-0 bg-surface-container text-primary rounded-full flex items-center justify-center">2</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Choose Size</h3>
+<p class="font-body-md text-body-md text-secondary">Select from 4" miniatures to 12" centerpieces.</p>
+</div>
+</div>
+<div class="flex gap-stack-sm items-start">
+<div class="w-12 h-12 shrink-0 bg-surface-container text-primary rounded-full flex items-center justify-center">3</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Print &amp; Paint</h3>
+<p class="font-body-md text-body-md text-secondary">Meticulous printing and hand-finishing.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Showcase -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg gap-6">
+<div>
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase">The Collection</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mt-2">Recent Commissions</h2>
+</div>
+<a class="text-[#004D40] font-label-md text-label-md secondary-underline" href="#">View Portfolio</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Product 1 -->
+<div class="group">
+<div class="overflow-hidden rounded-xl bg-white ambient-shadow hover-scale">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A detailed 3D printed resin bust of an elderly man with realistic skin texture and silver-painted hair, sitting on a dark wooden pedestal. The lighting is warm and directional, typical of a high-end art gallery. The composition is clean, centered, and sophisticated, reflecting a modern minimalist aesthetic with rich, deep teal and charcoal tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8dKsvRBItxrokP463JH10BfydXDq2y21yUNtamlIpqUInFrrMyn8fHwPGobNT3-7KPCq7dPc4sVa4wrKn16jRa72xJMaoEXdFctPyTPmWOsuwp8puSMaIP8HAAjd3neG-_nNNFzPX4H6NXiiC_4lkCeFwR1WEZedIpXFbBaKr_ORPTAUG1FKz02SHpksFX14bTFKoW9a7uh6_X5_Tg_B8yW-rkNDZlB-0p4NWnpMqwvMqK0vmwvw"/>
+<div class="p-stack-sm">
+<span class="font-label-md text-label-md text-outline tracking-wider uppercase">Artisan Series</span>
+<h3 class="font-headline-sm text-headline-sm mt-1">The Patriarch</h3>
+<p class="text-primary font-label-md text-label-md mt-4">Starting from $149</p>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="overflow-hidden rounded-xl bg-white ambient-shadow hover-scale">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A full-body 3D printed action figure of a modern urban explorer in a dynamic pose, featuring hand-painted matte finishes on clothing and metallic accents on gear. The figure is showcased in a crisp, white boutique environment with soft ambient lighting that creates subtle depth. The style is contemporary and precise, emphasizing the modern artisanship of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6TbGCkov-h7r6LDNqeEGdkv11Vf27W2bL7tvwLx61OmhD_0mAEQCazKdqgRrbVhnAnXdMKNM7ggTkHmYI70UNbQuw6RyrcwaAmwEeeWuRYQt5hpQGf13xRrTE7N8X0AkNwdcWjVvslmLIkpZZCy9_IOD8MGcswb0K8Yrhf_YO_G-kv9nBQwIdvjsCs7ogh4DT64aXV7klxI4woW7LQuZ63pxLpvFBdTL3Tz4lUkm_FuFUZv3Tp4g"/>
+<div class="p-stack-sm">
+<span class="font-label-md text-label-md text-outline tracking-wider uppercase">Modern Legacy</span>
+<h3 class="font-headline-sm text-headline-sm mt-1">The Voyager</h3>
+<p class="text-primary font-label-md text-label-md mt-4">Starting from $189</p>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="overflow-hidden rounded-xl bg-white ambient-shadow hover-scale">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A premium 3D printed figurine of a graceful dancer in mid-movement, finished with a bronze-infused resin that catches the light with a subtle metallic sheen. The setting is a minimalist gallery with a pale cream background and gentle shadows. The focus is on the fluid lines and high-quality material of the sculpture, radiating effortless luxury and artisan quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTlTRxpTPbNgMkTbuqlRaF9rzSTPjyieuGVvhX6AgE1z6aXyFh4v0T6L3GUkmPhYDkK0mXodqpkdbqngQWOBX5o3pPB26JJzb2H1lHPIvQcVB-kq-2M2oVNfl_4U2K1Y-eNEG1mVhqkOWuINhbXnxwOACG4N2Cm_nKLeytGsf-uMAiIaTk_zVQQXGWgqALCHXhvYatROYjX8e7Ws0FjxT_AH2lgM0q_BQEbCBOAwwLbEg8QtR4WpA"/>
+<div class="p-stack-sm">
+<span class="font-label-md text-label-md text-outline tracking-wider uppercase">Bronze-Infused</span>
+<h3 class="font-headline-sm text-headline-sm mt-1">Grace in Motion</h3>
+<p class="text-primary font-label-md text-label-md mt-4">Starting from $229</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section / The Atelier Standard -->
+<section class="bg-surface-dim py-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+<div class="space-y-stack-md">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">The Atelier Standard</h2>
+<div class="space-y-6">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="diamond" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-md text-label-md">PREMIUM RESIN CONSTRUCTION</span>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="format_paint" style="font-variation-settings: 'FILL' 1;">format_paint</span>
+<span class="font-label-md text-label-md">MASTER-LEVEL HAND PAINTING</span>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<span class="font-label-md text-label-md">GUARANTEED 14-DAY TURNAROUND</span>
+</div>
+</div>
+<div class="bg-white p-10 rounded-xl ambient-shadow relative mt-12">
+<span class="material-symbols-outlined text-primary/10 text-6xl absolute top-4 left-4" data-icon="format_quote">format_quote</span>
+<p class="font-body-lg text-body-lg italic relative z-10">
+                            "The level of detail is simply breathtaking. I sent in a grainy photo of my grandfather, and what they delivered was a museum-quality piece that now holds the center spot on my mantle. A truly boutique experience."
+                        </p>
+<div class="mt-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed"></div>
+<div>
+<p class="font-label-md text-label-md">Julian Vance</p>
+<p class="text-sm text-secondary">Private Collector</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative h-[500px] rounded-xl overflow-hidden ambient-shadow">
+<img class="w-full h-full object-cover" data-alt="A close-up photograph of a skilled artisan's hands carefully applying fine paint details to a small 3D printed figure using a professional-grade brush. The workstation is clean and organized, with a neutral, bright aesthetic. High-key lighting highlights the precision and care taken in the process. The color palette is composed of soft whites, greys, and the deep teal of the brand's primary color." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV4RRenG0y99T8dnkjYQ5Ye-4oJJB06PISq-JSVkU8m_54vilYDcFhv2Mi8IJiy72yiY3lTI8WE2oP4AOZsFFkdu7555Nw2qif7hI0a6pUVIWwE9y8pC7ds1NHLt3g1d4rI7LrbEDVFUMUiKPknxmV2bboVP_wl6s3MRYlB5HC0zRuB8xWgV4YzgCvHJ8fcOqCQa0lGMiyEQUywMsb7mi6r96OuIjW_OFbu8Yn8-G3Y3HrcuUxNoU"/>
+</div>
+</div>
+</section>
+<!-- Bulk Order CTA Banner -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto bg-primary text-on-primary rounded-2xl p-12 md:p-20 relative overflow-hidden text-center">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg height="100%" preserveaspectratio="none" viewbox="0 0 100 100" width="100%">
+<pattern height="10" id="grid" patternunits="userSpaceOnUse" width="10">
+<path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto space-y-6">
+<h2 class="font-display-lg text-headline-lg-mobile md:text-headline-md text-white">Scaling Your Vision?</h2>
+<p class="font-body-lg text-on-primary/80">From corporate gifts to limited edition drops, our atelier can handle bulk commissions with the same artisan precision.</p>
+<button class="bg-white text-primary px-10 py-4 rounded-full font-label-md text-label-md hover:scale-102 transition-transform active:scale-95 mt-4">
+                        Get a Custom Quote for Bulk Orders
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container py-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<a class="font-display-lg text-headline-sm text-primary" href="#">AURELIUS 3D</a>
+<p class="mt-6 text-secondary font-body-md text-body-md">Redefining physical memory through high-technology and traditional artisanship.</p>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-primary font-semibold">Quick Links</p>
+<ul class="space-y-2">
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Home</a></li>
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Portfolio</a></li>
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Process</a></li>
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-primary font-semibold">Social</p>
+<ul class="space-y-2">
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Instagram</a></li>
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">Behance</a></li>
+<li><a class="text-secondary font-label-md text-label-md hover:text-primary hover:underline decoration-primary/30 underline-offset-8 transition-all" href="#">LinkedIn</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-primary font-semibold">Contact</p>
+<p class="text-secondary font-body-md text-body-md">studio@aurelius3d.com</p>
+<p class="text-secondary font-body-md text-body-md">Boutique District, SF</p>
+<button class="text-primary font-label-md text-label-md hover:underline decoration-primary/30 underline-offset-8 transition-all pt-4">Get a Quote</button>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-stack-lg pt-stack-sm border-t border-outline-variant/30 text-center">
+<p class="font-label-md text-label-md text-secondary">© 2024 AURELIUS 3D STUDIO. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body></html>
